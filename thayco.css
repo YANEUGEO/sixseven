@@ -762,59 +762,6 @@ RESPONSIVE
     opacity:1;
   }
 }
-@media (max-width:768px){
-
-  /* nền sọc timeline xuống lớp dưới */
-  .timeline-road,
-  .timeline-track,
-  .timeline-progress{
-    z-index: 0 !important;
-    pointer-events: none !important;
-    opacity: .28;   /* giảm độ che */
-  }
-
-  /* nội dung nổi lên trên */
-  .memory-stop,
-  .memory-item,
-  .bubble-wrap{
-    position: relative;
-    z-index: 5;
-  }
-
-  /* milestone + bus vẫn thấy được */
-  .timeline-bus,
-  .timeline-milestone{
-    z-index: 6;
-  }
-
-}
-@media (max-width:768px){
-
-  /* nền sọc timeline xuống lớp dưới */
-  .timeline-road,
-  .timeline-track,
-  .timeline-progress{
-    z-index: 0 !important;
-    pointer-events: none !important;
-    opacity: .28;   /* giảm độ che */
-  }
-
-  /* nội dung nổi lên trên */
-  .memory-stop,
-  .memory-item,
-  .bubble-wrap{
-    position: relative;
-    z-index: 5;
-  }
-
-  /* milestone + bus vẫn thấy được */
-  .timeline-bus,
-  .timeline-milestone{
-    z-index: 6;
-  }
-
-}
-
 
 /* ===== ROTATE BLOCK ===== */
 
@@ -898,8 +845,12 @@ RESPONSIVE
     padding-right:0;
   }
 }
-@media (max-width:768px){
-  .memory-section{
-    padding-left: 60px;
+/* ===== MOBILE: XÓA NỀN SỌC TIMELINE ===== */
+
+@media (max-width: 768px){
+
+  .timeline-left-bg{
+    display:none !important;
   }
+
 }
