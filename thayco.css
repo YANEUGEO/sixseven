@@ -762,55 +762,59 @@ RESPONSIVE
     opacity:1;
   }
 }
-@media (max-width: 768px){
+@media (max-width:768px){
 
-  /* ===== ROAD ===== */
-
-  .timeline-road{
-    left: 4px;
-    width: 30px;
-    opacity: .65;
-  }
-
+  /* nền sọc timeline xuống lớp dưới */
+  .timeline-road,
   .timeline-track,
   .timeline-progress{
-    width: 6px;
-    left: 12px;
+    z-index: 0 !important;
+    pointer-events: none !important;
+    opacity: .28;   /* giảm độ che */
   }
 
-  /* ===== BUS ===== */
-
-  .timeline-bus{
-    font-size: 18px;
-    left: 2px;
-  }
-
-  /* ===== MILESTONE ICON ===== */
-
-  .timeline-milestone{
-    font-size: 13px;
-    left: 0;
-  }
-
-  /* ===== % BOX ===== */
-
-  .timeline-percent{
-    left: 42px;
-    font-size: 11px;
-    padding: 2px 6px;
-    border-radius: 8px;
-  }
-
-  /* ===== BUBBLE ===== */
-
+  /* nội dung nổi lên trên */
+  .memory-stop,
+  .memory-item,
   .bubble-wrap{
-    left: 58px;
-    max-width: 150px;
-    font-size: 12px;
-    padding: 6px 8px;
+    position: relative;
+    z-index: 5;
+  }
+
+  /* milestone + bus vẫn thấy được */
+  .timeline-bus,
+  .timeline-milestone{
+    z-index: 6;
   }
 
 }
+@media (max-width:768px){
+
+  /* nền sọc timeline xuống lớp dưới */
+  .timeline-road,
+  .timeline-track,
+  .timeline-progress{
+    z-index: 0 !important;
+    pointer-events: none !important;
+    opacity: .28;   /* giảm độ che */
+  }
+
+  /* nội dung nổi lên trên */
+  .memory-stop,
+  .memory-item,
+  .bubble-wrap{
+    position: relative;
+    z-index: 5;
+  }
+
+  /* milestone + bus vẫn thấy được */
+  .timeline-bus,
+  .timeline-milestone{
+    z-index: 6;
+  }
+
+}
+
 
 /* ===== ROTATE BLOCK ===== */
 
