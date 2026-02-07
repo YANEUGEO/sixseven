@@ -845,12 +845,18 @@ RESPONSIVE
     padding-right:0;
   }
 }
-/* ===== MOBILE: XÓA NỀN SỌC TIMELINE ===== */
+
+/* ===== MOBILE: XÓA NỀN SỌC TRANG TRÍ ===== */
 
 @media (max-width: 768px){
-
   .timeline-left-bg{
     display:none !important;
   }
+}
 
+}
+@media (max-width:768px){
+  .memory-section::before{
+    display:none;
+  }
 }
