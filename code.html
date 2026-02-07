@@ -116,40 +116,72 @@
 </header>
 
 <footer class="site-footer">
-  <div class="footer-grid">
 
-    <!-- CỘT TRÁI — TRI ÂN -->
-    <div class="footer-left">
-      <p class="footer-title">Tri ân Thầy Cô</p>
-      <p class="footer-desc">
-        Dấu ấn thanh xuân – Nơi lưu giữ những kỷ niệm đẹp nhất của tập thể 12L
-      </p>
+  <div class="footer-inner">
 
-      <div class="footer-divider"></div>
-
-      <p class="footer-credit">
-        © 2026 • Thực hiện bởi: ChatGPT và sự góp mặt của
-        | Trường Giang | Hải Đăng | Hồng Ngọc | Bảo Châu | Minh Khoa |
-      </p>
+    <div class="footer-top-line">
+      🚏 Đã đến trạm cuối 🚏
     </div>
 
-    <!-- CỘT PHẢI — GÓP Ý -->
-    <!-- CỘT PHẢI — GÓP Ý -->
-<div class="footer-feedback">
+    <div class="footer-columns">
 
-  <div class="feedback-title-row">
-    <h3>Góp ý</h3>
-    <a href="nhangopy.html" class="mini-circle-btn" title="Xem danh sách">💬</a>
-  </div>
+      <!-- ===== CỘT TRÁI ===== -->
+      <div class="f-col">
+        <h3>Thông tin liên hệ:</h3>
 
-  <form class="feedback-form" id="feedbackForm">
-    <input type="text" id="fbName" placeholder="Tên của bạn">
-    <textarea id="fbContent" rows="3" placeholder="Nhập góp ý..."></textarea>
-    <button type="submit">Gửi</button>
+        <div class="f-item">📞 0-xxx-xxx-xxx</div>
+
+        <div class="footer-divider"></div>
+
+        <div class="f-item">✉️ bruhbruh@gmail.com</div>
+
+        <p class="footer-update">
+          Cập nhật lần cuối: <span id="lastUpdate"></span>
+        </p>
+      </div>
+
+      <!-- ===== CỘT GIỮA ===== -->
+      <div class="f-col">
+        <h3>Thực hiện bởi</h3>
+        <div class="f-item">ChatGPT</div>
+
+        <h3>Và sự góp mặt của:</h3>
+        <div class="f-item">Trường Giang và Hải Đăng</div>
+        <div class="f-item">Hồng Ngọc và Bảo Châu</div>
+        <div class="f-item">Minh Khoa</div>
+      </div>
+
+      <!-- ===== CỘT GÓP Ý ===== -->
+<div class="f-col">
+  <h3>Hòm thư góp ý</h3>
+
+  <form id="feedbackForm2" class="feedback-mini">
+
+    <input id="fbName2" placeholder="Tên/nickname/email/sđt">
+
+    <div class="textarea-wrap">
+      <textarea id="fbContent2" placeholder="Nội dung góp ý"></textarea>
+      <a href="nhangopy.html" class="mini-circle">📋</a>
+    </div>
+
+    <!-- checkbox công khai -->
+    <label class="public-check">
+  <input type="checkbox" id="fbPublic" checked>
+  Đồng ý công khai góp ý
+</label>
+
+
+
+    <button type="submit">Gửi góp ý</button>
   </form>
-
 </div>
 
+
+    </div>
+
+    <div class="footer-top-line">
+      © 2026 • Cảm ơn vì đã trở thành một phần thanh xuân của nhau
+    </div>
 
   </div>
 </footer>
@@ -461,7 +493,55 @@ document.getElementById("feedbackForm").addEventListener("submit", function(e){
 });
 </script>
 
+<script>
+document.getElementById("feedbackForm2").onsubmit = function(e){
+  e.preventDefault();
 
+  const name = fbName2.value.trim() || "Ẩn danh";
+  const content = fbContent2.value.trim();
+  const isPublic = fbPublic.checked;
+
+  if(!content){
+    alert("Vui lòng nhập nội dung góp ý");
+    return;
+  }
+
+  /* ===== BẮT BUỘC PHẢI CÔNG KHAI ===== */
+
+  if(!isPublic){
+    alert("Bạn cần tick 'Đồng ý công khai góp ý' để gửi.");
+    return;
+  }
+
+  /* ===== LƯU ===== */
+
+  const list = JSON.parse(localStorage.getItem("feedbackList") || "[]");
+
+  list.unshift({
+    name,
+    content,
+    time: Date.now(),
+    public: true
+  });
+
+  localStorage.setItem("feedbackList", JSON.stringify(list));
+
+  /* ===== nếu có EmailJS thì gửi ở đây ===== */
+  // emailjs.send(...)
+
+  location.href = "nhangopy.html";
+};
+</script>
+
+
+
+<script>
+const d = new Date(document.lastModified);
+
+document.getElementById("lastUpdate").textContent =
+  d.toLocaleDateString("vi-VN") + " " +
+  d.toLocaleTimeString("vi-VN");
+</script>
 
 
 

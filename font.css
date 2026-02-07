@@ -547,43 +547,557 @@ body{
 .footer-left{
   align-items:center;
 }
-/* ===== TITLE + MINI BUTTON ROW ===== */
+/* ======================
+   FOOTER — THEO STYLE SITE
+====================== */
 
-.feedback-title-row{
-  position:relative;
+.site-footer-new{
+  margin-top:480px;
+  padding:36px 28px 42px;
+
+  background:white;
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -10px 30px rgba(0,0,0,.08);
+
+  max-width:1200px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* dòng chữ đầu */
+
+.footer-top-line{
   text-align:center;
-  margin-bottom:8px;
+  font-style:italic;
+  margin-bottom:26px;
+  opacity:.75;
 }
 
-.feedback-title-row h3{
-  margin:0;
+/* ===== GRID 3 CỘT ===== */
+
+.footer-columns{
+  display:flex;
+  gap:60px;
+  justify-content:space-between;
 }
 
-/* ===== MINI NÚT TRÒN ===== */
+/* ===== CỘT ===== */
 
-.mini-circle-btn{
+.f-col{
+  flex:1;
+  min-width:240px;
+}
+
+.f-col h3{
+  margin:0 0 12px;
+  font-size:20px;
+  font-weight:600;
+  color:#2f7d32;
+}
+
+.f-col h4{
+  margin:16px 0 6px;
+  font-size:16px;
+  font-weight:600;
+  opacity:.85;
+}
+
+/* ===== TEXT ITEM ===== */
+
+.f-item{
+  margin:6px 0;
+  font-size:15px;
+  opacity:.9;
+}
+
+/* ===== FORM ===== */
+
+.f-col label{
+  display:block;
+  font-size:14px;
+  margin-top:8px;
+  margin-bottom:4px;
+  opacity:.8;
+}
+
+.f-input,
+.f-text{
+  width:100%;
+  max-width:340px;
+
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  font-family:inherit;
+}
+
+.f-input:focus,
+.f-text:focus{
+  border-color:#2f7d32;
+  outline:none;
+}
+
+.f-text{
+  min-height:80px;
+  resize:vertical;
+}
+
+/* ===== BUTTON ===== */
+
+.f-btn{
+  margin-top:12px;
+  padding:10px 16px;
+  border:none;
+  border-radius:14px;
+
+  background:#2f7d32;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:.2s;
+}
+
+.f-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width:800px){
+  .footer-columns{
+    flex-direction:column;
+    gap:26px;
+  }
+}
+/* ===== FEEDBACK MINI ===== */
+
+.feedback-mini{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.feedback-mini input,
+.feedback-mini textarea{
+  width:100%;
+  box-sizing:border-box;
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #ccc;
+  font-family:inherit;
+  font-size:14px;
+}
+
+/* khung textarea + nút tròn */
+
+.textarea-wrap{
+  position:relative;
+  width:100%;
+}
+
+/* textarea full ngang */
+.textarea-wrap textarea{
+  width:100%;
+  min-height:90px;
+  padding-right:40px;   /* chừa chỗ cho nút tròn */
+  resize:vertical;
+}
+
+/* nút tròn danh sách góp ý */
+
+.mini-circle{
   position:absolute;
-  right:0;
-  top:50%;
-  transform:translateY(-50%);
+  right:8px;
+  bottom:8px;
+  width:28px;
+  height:28px;
+  border-radius:50%;
+  background:#2f7d32;
+  color:white;
+  text-decoration:none;
+  font-size:14px;
 
   display:flex;
   align-items:center;
   justify-content:center;
 
-  width:24px;
-  height:24px;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
+}
+
+/* ======================
+   FOOTER — GRID CĂN GIỮA + CHỮ CHẠM ĐÁY
+====================== */
+
+.footer-grid{
+  display:flex;
+  gap:40px;
+  justify-content:center;
+  align-items:stretch;     /* cho 2 cột cao bằng nhau */
+  max-width:1000px;
+  margin:0 auto;
+  text-align:center;
+}
+
+/* ===== CỘT TRI ÂN — ĐẨY XUỐNG ĐÁY ===== */
+
+.footer-left{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;   /* mấu chốt: chữ nằm sát đáy */
+}
+
+/* ===== CỘT GÓP Ý ===== */
+
+.footer-feedback{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+/* ===== TEXT ===== */
+
+.footer-title{
+  font-size:20px;
+  font-weight:600;
+}
+
+.footer-desc{
+  margin-top:6px;
+  opacity:.85;
+}
+
+.footer-divider{
+  width:60%;
+  height:1px;
+  background:#e5e5e5;
+  margin:18px auto;
+}
+
+/* ===== FORM ===== */
+
+.feedback-form{
+  max-width:420px;
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.feedback-form input,
+.feedback-form textarea{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1px solid #ccc;
+  font-family:inherit;
+  text-align:center;
+}
+
+.feedback-form button{
+  padding:10px;
+  border:none;
+  border-radius:12px;
+  background:#2f7d32;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width:600px){
+  .footer-grid{
+    flex-direction:column;
+    gap:22px;
+  }
+
+  .footer-left{
+    justify-content:center;   /* mobile không ép xuống đáy */
+  }
+}
+/* ======================
+   FOOTER — THEO STYLE SITE
+====================== */
+
+.site-footer-new{
+  margin-top:480px;
+  padding:36px 28px 42px;
+
+  background:white;
+  border-radius:26px 26px 0 0;
+  box-shadow:0 -10px 30px rgba(0,0,0,.08);
+
+  max-width:1200px;
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* dòng chữ đầu */
+
+.footer-top-line{
+  text-align:center;
+  font-style:italic;
+  margin-bottom:26px;
+  opacity:.75;
+}
+
+/* ===== GRID 3 CỘT ===== */
+
+.footer-columns{
+  display:flex;
+  gap:60px;
+  justify-content:space-between;
+}
+
+/* ===== CỘT ===== */
+
+.f-col{
+  flex:1;
+  min-width:240px;
+}
+
+.f-col h3{
+  margin:0 0 12px;
+  font-size:20px;
+  font-weight:600;
+  color:#2f7d32;
+}
+
+.f-col h4{
+  margin:16px 0 6px;
+  font-size:16px;
+  font-weight:600;
+  opacity:.85;
+}
+
+/* ===== TEXT ITEM ===== */
+
+.f-item{
+  margin:6px 0;
+  font-size:15px;
+  opacity:.9;
+}
+
+/* ===== FORM ===== */
+
+.f-col label{
+  display:block;
+  font-size:14px;
+  margin-top:8px;
+  margin-bottom:4px;
+  opacity:.8;
+}
+
+.f-input,
+.f-text{
+  width:100%;
+  max-width:340px;
+
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  font-family:inherit;
+}
+
+.f-input:focus,
+.f-text:focus{
+  border-color:#2f7d32;
+  outline:none;
+}
+
+.f-text{
+  min-height:80px;
+  resize:vertical;
+}
+
+/* ===== BUTTON ===== */
+
+.f-btn{
+  margin-top:12px;
+  padding:10px 16px;
+  border:none;
+  border-radius:14px;
+
+  background:#2f7d32;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+
+  box-shadow:0 6px 16px rgba(0,0,0,.15);
+  transition:.2s;
+}
+
+.f-btn:hover{
+  transform:translateY(-2px);
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width:800px){
+  .footer-columns{
+    flex-direction:column;
+    gap:26px;
+  }
+}
+/* ===== FOOTER FULL WIDTH ===== */
+
+.site-footer{
+  margin-top:520px;
+  background:white;
+  box-shadow:0 -10px 30px rgba(0,0,0,.08);
+}
+
+/* khung giữa giống hero */
+
+.footer-inner{
+  max-width:1200px;
+  margin:auto;
+  padding:36px 28px 42px;
+}
+
+/* dòng chữ đầu */
+
+.footer-top-line{
+  text-align:center;
+  font-style:italic;
+  margin-bottom:26px;
+  opacity:.75;
+}
+
+/* ===== GRID ===== */
+
+.footer-columns{
+  display:flex;
+  gap:60px;
+}
+
+/* ===== CỘT ===== */
+
+.f-col{
+  flex:1;
+  min-width:240px;
+}
+
+.f-col h3{
+  margin:0 0 12px;
+  font-size:20px;
+  font-weight:600;
+  color:#2f7d32;
+}
+
+.f-item{
+  margin:6px 0;
+  font-size:15px;
+  opacity:.9;
+}
+
+/* ===== DIVIDER ===== */
+
+.footer-divider{
+  width:70%;
+  height:1px;
+  background:#e5e5e5;
+  margin:14px 0;
+}
+
+/* ===== FORM MINI ===== */
+
+.feedback-mini{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.feedback-mini input,
+.feedback-mini textarea{
+  padding:10px 12px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  font-family:inherit;
+}
+
+.feedback-mini textarea{
+  min-height:70px;
+  resize:vertical;
+}
+
+.feedback-mini input:focus,
+.feedback-mini textarea:focus{
+  border-color:#2f7d32;
+  outline:none;
+}
+
+/* ===== TEXTAREA + NÚT TRÒN ===== */
+
+.textarea-wrap{
+  position:relative;
+}
+
+.mini-circle{
+  position:absolute;
+  right:-12px;
+  bottom:-12px;
+
+  width:26px;
+  height:26px;
   border-radius:50%;
 
   background:#2f7d32;
   color:white;
   text-decoration:none;
-  font-size:12px;
 
-  box-shadow:0 3px 8px rgba(0,0,0,.25);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
   transition:.2s;
 }
 
-.mini-circle-btn:hover{
-  transform:translateY(-50%) scale(1.15);
+.mini-circle:hover{
+  transform:scale(1.15);
+}
+
+/* ===== BUTTON ===== */
+
+.feedback-mini button{
+  padding:10px;
+  border:none;
+  border-radius:14px;
+  background:#2f7d32;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+/* ===== MOBILE ===== */
+
+@media (max-width:800px){
+  .footer-columns{
+    flex-direction:column;
+    gap:26px;
+  }
+}
+.footer-update{
+  margin-top:10px;
+  font-size:13px;
+  opacity:.7;
+}
+.public-check{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:13px;
+  margin:8px 0 4px;
+  opacity:.9;
+}
+
+.public-check input{
+  width:16px;
+  height:16px;
+  cursor:pointer;
 }
