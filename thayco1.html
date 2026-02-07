@@ -87,12 +87,8 @@
     <div class="milestone-bubble">Chuyến xe sắp tới bến rồi</div>
   </div>
 
-</div>
 
-
-
-
-</div>
+  </div>
 
   <h2>Chuyến xe kỉ niệm</h2>
  <!-- ===== LỚP 10 ===== -->
@@ -313,16 +309,6 @@ Ba năm không phải là quãng thời gian ngắn, cũng chẳng quá dài, nh
 
 <!-- ================= LIGHTBOX ================= -->
 
-<div class="img-lightbox" id="imgLightbox">
-  <span class="img-close">&times;</span>
-
-  <div class="img-stage" id="imgStage">
-    <img id="imgLightboxContent">
-  </div>
-
-  <div class="img-caption" id="imgCaption"></div>
-</div>
-
 <footer class="site-footer">
   <div class="footer-content">
     <p class="footer-title">Tri ân Thầy Cô</p>
@@ -505,11 +491,135 @@ enterBtn.onclick = ()=>{
   document.body.style.overflow = "auto";
 };
 
+const lb = document.getElementById("imgLightbox");
+const lbImg = document.getElementById("lbImg");
+const lbClose = document.querySelector(".lb-close");
+
+let zoomed = false;
+/* ================= LIGHTBOX ZOOM + HOLD-DRAG ================= */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const lb = document.getElementById("imgLightbox");
+  const lbImg = document.getElementById("lbImg");
+  const lbClose = document.querySelector(".lb-close");
+
+  let scale = 1;
+  let posX = 0;
+  let posY = 0;
+
+  let isDown = false;
+  let startX = 0;
+  let startY = 0;
+
+  function update(){
+    lbImg.style.transform =
+      `translate(${posX}px, ${posY}px) scale(${scale})`;
+  }
+
+  /* ===== OPEN ===== */
+
+  document.querySelectorAll(".memory-item img").forEach(img=>{
+    img.onclick = e=>{
+      e.stopPropagation();
+      lb.style.display = "flex";
+      lbImg.src = img.src;
+
+      scale = 1;
+      posX = 0;
+      posY = 0;
+      update();
+
+      document.body.style.overflow = "hidden";
+    };
+  });
+
+  /* ===== SCROLL ZOOM ===== */
+
+  lbImg.addEventListener("wheel",(e)=>{
+    e.preventDefault();
+
+    scale += (e.deltaY < 0 ? 0.15 : -0.15);
+    scale = Math.max(0.6, Math.min(5, scale));
+
+    if(scale <= 1){
+      posX = 0;
+      posY = 0;
+    }
+
+    update();
+  });
+
+  /* ===== HOLD + DRAG ===== */
+
+  lbImg.addEventListener("mousedown",(e)=>{
+    if(scale <= 1) return;          // chỉ kéo khi đã zoom
+    if(e.button !== 0) return;      // chỉ chuột trái
+
+    isDown = true;
+    startX = e.clientX - posX;
+    startY = e.clientY - posY;
+
+    lbImg.style.cursor = "grabbing";
+  });
+
+  window.addEventListener("mousemove",(e)=>{
+    if(!isDown) return;
+
+    posX = e.clientX - startX;
+    posY = e.clientY - startY;
+
+    update();
+  });
+
+  window.addEventListener("mouseup",()=>{
+    isDown = false;
+    lbImg.style.cursor = "grab";
+  });
+
+  /* ===== CLICK QUICK ZOOM ===== */
+
+  lbImg.addEventListener("click",(e)=>{
+    e.stopPropagation();
+
+    if(scale === 1){
+      scale = 2;
+    } else {
+      scale = 1;
+      posX = 0;
+      posY = 0;
+    }
+
+    update();
+  });
+
+  /* ===== CLOSE ===== */
+
+  function closeLB(){
+    lb.style.display = "none";
+    document.body.style.overflow = "auto";
+  }
+
+  lbClose.onclick = closeLB;
+  lb.onclick = e => { if(e.target === lb) closeLB(); };
+
+  document.addEventListener("keydown", e=>{
+    if(e.key === "Escape") closeLB();
+  });
+
+});
 
 </script>
 
 
-<div id="celebrateLayer"></div>
 
+<div id="celebrateLayer"></div>
+<div id="imgLightbox" class="img-lightbox">
+  <span class="lb-close">✖</span>
+  <img id="lbImg">
+</div>
 </body>
 </html>
+
+
+
