@@ -116,21 +116,43 @@
 </header>
 
 <footer class="site-footer">
-  <div class="footer-content">
-    <p class="footer-title">Tri ân Thầy Cô</p>
-    <p class="footer-desc">
-      Dấu ấn thanh xuân – Nơi lưu giữ những kỷ niệm đẹp nhất của tập thể 12L
-    </p>
+  <div class="footer-grid">
 
-    <div class="footer-divider"></div>
+    <!-- CỘT TRÁI — TRI ÂN -->
+    <div class="footer-left">
+      <p class="footer-title">Tri ân Thầy Cô</p>
+      <p class="footer-desc">
+        Dấu ấn thanh xuân – Nơi lưu giữ những kỷ niệm đẹp nhất của tập thể 12L
+      </p>
 
-    <p class="footer-credit">
-      © 2026 • Thực hiện bởi: ChatGPt và sư góp mặt của  | Trường Giang | Hải Đăng | Hồng Ngọc | Bảo Châu và Minh Khoa |<br>
-      Với tất cả sự kính trọng và biết ơn 💙
-    </p>
+      <div class="footer-divider"></div>
+
+      <p class="footer-credit">
+        © 2026 • Thực hiện bởi: ChatGPT và sự góp mặt của
+        | Trường Giang | Hải Đăng | Hồng Ngọc | Bảo Châu | Minh Khoa |
+      </p>
+    </div>
+
+    <!-- CỘT PHẢI — GÓP Ý -->
+   <!-- CỘT PHẢI — GÓP Ý -->
+<div class="footer-feedback">
+
+  <div class="feedback-title-row">
+    <h3>Góp ý</h3>
+    <a href="nhangopy.html" class="mini-circle-btn" title="Xem danh sách">💬</a>
+  </div>
+
+  <form class="feedback-form" id="feedbackForm">
+    <input type="text" id="fbName" placeholder="Tên của bạn">
+    <textarea id="fbContent" rows="3" placeholder="Nhập góp ý..."></textarea>
+    <button type="submit">Gửi</button>
+  </form>
+
+</div>
+
+
   </div>
 </footer>
-
 
 <script>
 /* =========================
@@ -412,8 +434,32 @@ requestAnimationFrame(()=>{
 });
 </script>
 
+<script>
+document.getElementById("feedbackForm").addEventListener("submit", function(e){
+  e.preventDefault();
 
+  const name = document.getElementById("fbName").value.trim();
+  const content = document.getElementById("fbContent").value.trim();
 
+  if(!name || !content){
+    alert("Vui lòng nhập đủ thông tin");
+    return;
+  }
+
+  const list = JSON.parse(localStorage.getItem("feedbackList") || "[]");
+
+  list.unshift({
+    name: name,
+    content: content,
+    time: new Date().toISOString()
+  });
+
+  localStorage.setItem("feedbackList", JSON.stringify(list));
+
+  /* chuyển trang */
+  window.location.href = "nhangopy.html";
+});
+</script>
 
 
 

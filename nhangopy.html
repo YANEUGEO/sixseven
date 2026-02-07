@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Góp ý</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+<style>
+
+body{
+  font-family:Poppins, sans-serif;
+  margin:0;
+  padding:40px 16px;
+
+  background-image:url("JPG/Nen.JPG");
+  background-size:cover;
+  background-position:center;
+  background-attachment:fixed;
+  background-repeat:no-repeat;
+}
+
+
+/* ===== WRAP ===== */
+
+.wrap{
+  max-width:900px;
+  margin:auto;
+}
+
+/* ===== PANEL CẢM ƠN ===== */
+
+.thank-panel{
+  background:white;
+  border-radius:22px;
+  padding:32px;
+  text-align:center;
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
+  margin-bottom:28px;
+}
+
+.thank-panel h1{
+  margin:0 0 8px;
+}
+
+.thank-panel p{
+  opacity:.75;
+}
+
+/* ===== LIST PANEL ===== */
+
+.list-panel{
+  background:white;
+  border-radius:22px;
+  padding:28px;
+  box-shadow:0 15px 40px rgba(0,0,0,.12);
+}
+
+.list-title{
+  text-align:center;
+  font-size:20px;
+  font-weight:600;
+  margin-bottom:18px;
+}
+
+/* ===== ITEM ===== */
+
+.item{
+  border-radius:14px;
+  padding:16px 18px;
+  margin-bottom:14px;
+  background:#f9fafb;
+  border:1px solid #eee;
+}
+
+.row{
+  display:flex;
+  justify-content:space-between;
+  font-size:13px;
+  opacity:.7;
+  margin-bottom:6px;
+}
+
+.name{
+  font-weight:600;
+}
+
+.content{
+  font-size:15px;
+  line-height:1.5;
+}
+
+/* ===== BACK BUTTON ===== */
+
+.back{
+  display:inline-block;
+  margin-top:18px;
+  text-decoration:none;
+  padding:10px 16px;
+  border-radius:12px;
+  background:#2f7d32;
+  color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <!-- ===== THANK YOU ===== -->
+  <div class="thank-panel">
+    <h1>Cảm ơn bạn đã góp ý</h1>
+    <p>Ý kiến của bạn giúp trang tri ân hoàn thiện hơn 💚</p>
+    <a href="code.html" class="back">Quay lại trang chính</a>
+  </div>
+
+  <!-- ===== LIST ===== -->
+  <div class="list-panel">
+    <div class="list-title">Danh sách góp ý</div>
+    <div id="list"></div>
+  </div>
+
+</div>
+
+<script>
+const listEl = document.getElementById("list");
+const data = JSON.parse(localStorage.getItem("feedbackList") || "[]");
+
+function formatTime(t){
+  return new Date(t).toLocaleString("vi-VN");
+}
+
+if(data.length === 0){
+  listEl.innerHTML = "<p style='text-align:center;opacity:.7'>Chưa có góp ý nào</p>";
+}else{
+  listEl.innerHTML = data.map(x => `
+    <div class="item">
+      <div class="row">
+        <span class="name">${x.name}</span>
+        <span>${formatTime(x.time)}</span>
+      </div>
+      <div class="content">${x.content}</div>
+    </div>
+  `).join("");
+}
+</script>
+
+</body>
+</html>
