@@ -764,33 +764,54 @@ RESPONSIVE
 }
 @media (max-width: 768px){
 
+  /* ===== ROAD ===== */
+
   .timeline-road{
-    left: 6px;
-    width: 36px;
-    opacity: .75;
+    left: 4px;
+    width: 30px;
+    opacity: .65;
   }
+
+  .timeline-track,
+  .timeline-progress{
+    width: 6px;
+    left: 12px;
+  }
+
+  /* ===== BUS ===== */
 
   .timeline-bus{
     font-size: 18px;
+    left: 2px;
   }
+
+  /* ===== MILESTONE ICON ===== */
 
   .timeline-milestone{
-    font-size: 14px;
+    font-size: 13px;
+    left: 0;
   }
+
+  /* ===== % BOX ===== */
 
   .timeline-percent{
-    left: 44px;
+    left: 42px;
     font-size: 11px;
     padding: 2px 6px;
+    border-radius: 8px;
   }
 
+  /* ===== BUBBLE ===== */
+
   .bubble-wrap{
-    left: 60px;
-    max-width: 140px;
+    left: 58px;
+    max-width: 150px;
     font-size: 12px;
+    padding: 6px 8px;
   }
 
 }
+
 /* ===== ROTATE BLOCK ===== */
 
 #rotateBlock{
@@ -871,5 +892,10 @@ RESPONSIVE
   .tri-an-back-wrap{
     justify-content:center;  /* mobile căn giữa cho dễ bấm */
     padding-right:0;
+  }
+}
+@media (max-width:768px){
+  .memory-section{
+    padding-left: 60px;
   }
 }
