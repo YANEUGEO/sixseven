@@ -270,62 +270,32 @@ TRIBUTE
 /* ======================
 LIGHTBOX PRO
 ====================== */
-
 .img-lightbox{
-  display:none;
   position:fixed;
   inset:0;
+  background:rgba(0,0,0,.85);
+  display:none;
+  align-items:center;
+  justify-content:center;
   z-index:9999;
-
-  background:rgba(0,0,0,.9);
-  backdrop-filter:blur(4px);
-
-  justify-content:center;
-  align-items:center;
-  flex-direction:column;
-
-  padding:30px;
 }
 
-.img-stage{
-  width:95vw;
-  height:85vh;
-  overflow:hidden;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  cursor:grab;
+.img-lightbox img{
+  max-width:90%;
+  max-height:90%;
+  border-radius:14px;
+  cursor:zoom-in;
+  transition:transform .25s;
 }
 
-.img-stage img{
-  max-width:none;
-  max-height:none;
-  transform-origin:center;
-  transition:transform .15s ease;
-  user-select:none;
-  pointer-events:none;
-}
-
-.img-caption{
-  color:#fff;
-  margin-top:15px;
-  font-size:18px;
-  text-align:center;
-  max-width:900px;
-}
-
-.img-close{
+.lb-close{
   position:absolute;
   top:20px;
   right:25px;
-  font-size:38px;
-  color:#fff;
+  font-size:28px;
+  color:white;
   cursor:pointer;
-  user-select:none;
-}
-
-body.lightbox-open{
-  overflow:hidden;
+  z-index:10000;
 }
 
 
@@ -687,7 +657,6 @@ RESPONSIVE
   }
 }
 /* ===== MEMORY TICKET OVERLAY ===== */
-
 .ticket-overlay{
   position: fixed;
   inset: 0;
@@ -792,4 +761,33 @@ RESPONSIVE
     transform:scale(1) translateY(0);
     opacity:1;
   }
+}
+@media (max-width: 768px){
+
+  .timeline-road{
+    left: 6px;
+    width: 36px;
+    opacity: .75;
+  }
+
+  .timeline-bus{
+    font-size: 18px;
+  }
+
+  .timeline-milestone{
+    font-size: 14px;
+  }
+
+  .timeline-percent{
+    left: 44px;
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+
+  .bubble-wrap{
+    left: 60px;
+    max-width: 140px;
+    font-size: 12px;
+  }
+
 }
