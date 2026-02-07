@@ -820,17 +820,23 @@ RESPONSIVE
   }
 }
 
-/* ===== MOBILE: XÓA NỀN SỌC TRANG TRÍ ===== */
+/* ===== MOBILE: ẨN TOÀN BỘ NỀN TIMELINE ===== */
 
 @media (max-width: 768px){
+
+  /* tắt nền sọc trang trí bên trái */
   .timeline-left-bg{
     display:none !important;
   }
-}
 
-}
-@media (max-width:768px){
+  /* tắt vạch dọc timeline */
   .memory-section::before{
-    display:none;
+    display:none !important;
   }
+
+  /* giảm lề trái cho nội dung */
+  .memory-section{
+    padding-left:20px;
+  }
+
 }
