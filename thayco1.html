@@ -19,6 +19,14 @@
 
 <body>
 <div class="timeline-left-bg"></div>
+<div id="rotateBlock">
+  <div class="rotate-box">
+    📱↻<br>
+    Vui lòng xoay điện thoại sang<br>
+    <b>chế độ ngang</b> để xem chuyến xe kỷ niệm
+  </div>
+</div>
+
 <!-- ===== MEMORY TICKET OVERLAY ===== -->
 
 <div id="memoryTicketOverlay" class="ticket-overlay">
@@ -307,9 +315,16 @@ Ba năm không phải là quãng thời gian ngắn, cũng chẳng quá dài, nh
   </div>
 </section>
 
+<div class="tri-an-back-wrap">
+  <a href="code.html" class="footer-code-btn">
+    ⬅ Về trang chủ
+  </a>
+</div>
+
+
 <!-- ================= LIGHTBOX ================= -->
 
-<footer class="site-footer">
+<footer class="site-footer">  
   <div class="footer-content">
     <p class="footer-title">Tri ân Thầy Cô</p>
     <p class="footer-desc">
@@ -325,8 +340,11 @@ Ba năm không phải là quãng thời gian ngắn, cũng chẳng quá dài, nh
   </div>
 </footer>
 
-<!-- ================= SCRIPT ================= -->
 <script>
+document.addEventListener("DOMContentLoaded", ()=>{
+
+/* ================= TIMELINE CORE ================= */
+
 const sectionMem = document.querySelector(".memory-section");
 const road = document.querySelector(".timeline-road");
 const progressBar = document.getElementById("timelineProgress");
@@ -336,12 +354,12 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-/* ===== % mốc ===== */
-
 const milestonePercents = [1,21,69];
-let activeIndex = -1;
 
-/* ===== đặt vị trí milestone theo % ===== */
+let activeIndex = -1;
+let bubbleTimer = null;
+
+/* ===== place milestone ===== */
 
 function placeMilestones(){
   const h = road.offsetHeight;
@@ -350,10 +368,10 @@ function placeMilestones(){
   });
 }
 
-window.addEventListener("load", placeMilestones);
+placeMilestones();
 window.addEventListener("resize", placeMilestones);
 
-/* ===== scroll ===== */
+/* ================= SCROLL ================= */
 
 window.addEventListener("scroll", ()=>{
 
@@ -374,10 +392,9 @@ window.addEventListener("scroll", ()=>{
 
   const p = percent*100;
 
-  /* ===== milestone active ===== */
+/* ===== milestone active + mobile auto hide ===== */
 
   let newIndex = -1;
-
   for(let i=milestonePercents.length-1;i>=0;i--){
     if(p >= milestonePercents[i]){
       newIndex = i;
@@ -386,14 +403,25 @@ window.addEventListener("scroll", ()=>{
   }
 
   if(newIndex !== activeIndex){
+
     milestones.forEach(m=>m.classList.remove("active"));
+
     if(newIndex >= 0){
-      milestones[newIndex].classList.add("active");
+      const m = milestones[newIndex];
+      m.classList.add("active");
+
+      if(window.innerWidth < 900){
+        clearTimeout(bubbleTimer);
+        bubbleTimer = setTimeout(()=>{
+          m.classList.remove("active");
+        },3000);
+      }
     }
+
     activeIndex = newIndex;
   }
 
-  /* ===== fade card ===== */
+/* ===== fade cards ===== */
 
   stops.forEach(el=>{
     const r = el.getBoundingClientRect();
@@ -402,16 +430,17 @@ window.addEventListener("scroll", ()=>{
     }
   });
 
-  /* ===== 🎉 CELEBRATION TRIGGER ===== */
+/* ===== celebration trigger ===== */
 
   if(percent >= 0.999 && !window._celebrated){
     launchCelebration();
     window._celebrated = true;
   }
 
+  checkTicketTrigger();
 });
 
-/* ===== click bus → next stop ===== */
+/* ===== click bus → next ===== */
 
 bus.onclick = ()=>{
   let i = activeIndex + 1;
@@ -423,17 +452,14 @@ bus.onclick = ()=>{
   });
 };
 
-/* ===== 🎉 CELEBRATION EFFECT ===== */
+/* ================= CELEBRATION ================= */
 
 function launchCelebration(){
 
   const layer = document.getElementById("celebrateLayer");
   if(!layer) return;
 
-  /* ===== 🌸 HOA 4 GÓC ===== */
-
   const corners = ["🌸","🌺","🌼","💐"];
-
   const pos = ["corner-tl","corner-tr","corner-bl","corner-br"];
 
   pos.forEach((cls,i)=>{
@@ -443,174 +469,154 @@ function launchCelebration(){
     layer.appendChild(f);
   });
 
-  /* ===== 🎊 HOA GIẤY RƠI ===== */
-
   const icons = ["🎉","✨","🎊","💮"];
 
   for(let i=0;i<120;i++){
     const c = document.createElement("div");
     c.className = "confetti";
     c.textContent = icons[i % icons.length];
-
     c.style.left = Math.random()*100 + "vw";
     c.style.animationDuration = (2 + Math.random()*2) + "s";
-    c.style.animationDelay = Math.random()*1.2 + "s";
-
     layer.appendChild(c);
   }
 }
 
-/* ===== TICKET SHOW WHEN SCROLL TO TIMELINE ===== */
+/* ================= MEMORY TICKET ================= */
 
 const overlay = document.getElementById("memoryTicketOverlay");
 const enterBtn = document.getElementById("ticketEnterBtn");
 let ticketShown = false;
 
 function checkTicketTrigger(){
-
   if(ticketShown) return;
 
   const rect = sectionMem.getBoundingClientRect();
-
-  // khi section vào gần màn hình
   if(rect.top < window.innerHeight * 0.7){
-
     overlay.style.display = "flex";
     document.body.style.overflow = "hidden";
     ticketShown = true;
-
   }
 }
-
-window.addEventListener("scroll", checkTicketTrigger);
-
-/* mở khóa khi bấm */
 
 enterBtn.onclick = ()=>{
   overlay.style.display = "none";
   document.body.style.overflow = "auto";
 };
 
+/* ================= LIGHTBOX ZOOM + HOLD DRAG ================= */
+
 const lb = document.getElementById("imgLightbox");
 const lbImg = document.getElementById("lbImg");
 const lbClose = document.querySelector(".lb-close");
 
-let zoomed = false;
-/* ================= LIGHTBOX ZOOM + HOLD-DRAG ================= */
+let scale = 1;
+let posX = 0;
+let posY = 0;
+let isDown = false;
+let startX = 0;
+let startY = 0;
 
-document.addEventListener("DOMContentLoaded", ()=>{
+function update(){
+  lbImg.style.transform =
+    `translate(${posX}px,${posY}px) scale(${scale})`;
+}
 
-  const lb = document.getElementById("imgLightbox");
-  const lbImg = document.getElementById("lbImg");
-  const lbClose = document.querySelector(".lb-close");
-
-  let scale = 1;
-  let posX = 0;
-  let posY = 0;
-
-  let isDown = false;
-  let startX = 0;
-  let startY = 0;
-
-  function update(){
-    lbImg.style.transform =
-      `translate(${posX}px, ${posY}px) scale(${scale})`;
-  }
-
-  /* ===== OPEN ===== */
-
-  document.querySelectorAll(".memory-item img").forEach(img=>{
-    img.onclick = e=>{
-      e.stopPropagation();
-      lb.style.display = "flex";
-      lbImg.src = img.src;
-
-      scale = 1;
-      posX = 0;
-      posY = 0;
-      update();
-
-      document.body.style.overflow = "hidden";
-    };
-  });
-
-  /* ===== SCROLL ZOOM ===== */
-
-  lbImg.addEventListener("wheel",(e)=>{
-    e.preventDefault();
-
-    scale += (e.deltaY < 0 ? 0.15 : -0.15);
-    scale = Math.max(0.6, Math.min(5, scale));
-
-    if(scale <= 1){
-      posX = 0;
-      posY = 0;
-    }
-
-    update();
-  });
-
-  /* ===== HOLD + DRAG ===== */
-
-  lbImg.addEventListener("mousedown",(e)=>{
-    if(scale <= 1) return;          // chỉ kéo khi đã zoom
-    if(e.button !== 0) return;      // chỉ chuột trái
-
-    isDown = true;
-    startX = e.clientX - posX;
-    startY = e.clientY - posY;
-
-    lbImg.style.cursor = "grabbing";
-  });
-
-  window.addEventListener("mousemove",(e)=>{
-    if(!isDown) return;
-
-    posX = e.clientX - startX;
-    posY = e.clientY - startY;
-
-    update();
-  });
-
-  window.addEventListener("mouseup",()=>{
-    isDown = false;
-    lbImg.style.cursor = "grab";
-  });
-
-  /* ===== CLICK QUICK ZOOM ===== */
-
-  lbImg.addEventListener("click",(e)=>{
+document.querySelectorAll(".memory-item img").forEach(img=>{
+  img.onclick = e=>{
     e.stopPropagation();
-
-    if(scale === 1){
-      scale = 2;
-    } else {
-      scale = 1;
-      posX = 0;
-      posY = 0;
-    }
-
+    lb.style.display = "flex";
+    lbImg.src = img.src;
+    scale = 1; posX = 0; posY = 0;
     update();
-  });
+    document.body.style.overflow = "hidden";
+  };
+});
 
-  /* ===== CLOSE ===== */
+/* scroll zoom */
 
-  function closeLB(){
-    lb.style.display = "none";
+lbImg.addEventListener("wheel",(e)=>{
+  e.preventDefault();
+  scale += (e.deltaY < 0 ? 0.15 : -0.15);
+  scale = Math.max(0.6, Math.min(5, scale));
+  if(scale <= 1){ posX=0; posY=0; }
+  update();
+});
+
+/* hold drag */
+
+lbImg.addEventListener("mousedown",(e)=>{
+  if(scale <= 1) return;
+  if(e.button !== 0) return;
+  isDown = true;
+  startX = e.clientX - posX;
+  startY = e.clientY - posY;
+});
+
+window.addEventListener("mousemove",(e)=>{
+  if(!isDown) return;
+  posX = e.clientX - startX;
+  posY = e.clientY - startY;
+  update();
+});
+
+window.addEventListener("mouseup",()=> isDown=false);
+
+/* click quick zoom */
+
+lbImg.onclick = e=>{
+  e.stopPropagation();
+  if(scale === 1){
+    scale = 2;
+  } else {
+    scale = 1;
+    posX = 0; posY = 0;
+  }
+  update();
+};
+
+function closeLB(){
+  lb.style.display = "none";
+  document.body.style.overflow = "auto";
+}
+
+lbClose.onclick = closeLB;
+lb.onclick = e => { if(e.target === lb) closeLB(); };
+
+document.addEventListener("keydown", e=>{
+  if(e.key === "Escape") closeLB();
+});
+
+/* ================= ORIENTATION LOCK ================= */
+
+function checkOrientation(){
+  const block = document.getElementById("rotateBlock");
+  if(!block) return;
+
+  const isMobile = window.innerWidth < 900;
+
+  if(isMobile && window.innerHeight > window.innerWidth){
+    block.style.display = "flex";
+    document.body.style.overflow = "hidden";
+  } else {
+    block.style.display = "none";
     document.body.style.overflow = "auto";
   }
+}
 
-  lbClose.onclick = closeLB;
-  lb.onclick = e => { if(e.target === lb) closeLB(); };
-
-  document.addEventListener("keydown", e=>{
-    if(e.key === "Escape") closeLB();
-  });
+checkOrientation();
+window.addEventListener("resize", checkOrientation);
+window.addEventListener("orientationchange", checkOrientation);
 
 });
 
-</script>
+document.getElementById("backTopBtn").onclick = ()=>{
+  window.scrollTo({
+    top:0,
+    behavior:"smooth"
+  });
+};
 
+</script>
 
 
 <div id="celebrateLayer"></div>
