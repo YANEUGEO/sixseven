@@ -840,31 +840,10 @@ RESPONSIVE
   }
 
 }
-/* ===== MOBILE: TIMELINE SÁT MÉP TRÁI ===== */
+/* ===== MOBILE: ẨN XE BUS ===== */
 
 @media (max-width:768px){
-
-  .timeline-road{
-    left:2px;          /* sát mép trái */
-  }
-
-  .timeline-track,
-  .timeline-progress{
-    left:50%;
-    transform:translateX(-50%);
-    width:6px;         /* nhỏ lại cho gọn */
-  }
-
   .timeline-bus{
-    left:50%;
-    transform:translate(-50%,-50%);
-    font-size:18px;
+    display:none !important;
   }
-
-  .timeline-percent{
-    left:26px;         /* hộp % nằm bên phải thanh */
-    font-size:11px;
-    padding:2px 6px;
-  }
-
 }

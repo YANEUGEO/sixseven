@@ -327,7 +327,7 @@ body{
 
 
 /* ======================
-   MOBILE
+   MOBILE FIX — CENTER CARD KHÔNG LỆCH
 ====================== */
 
 @media (max-width:600px){
@@ -341,11 +341,30 @@ body{
     height:300px;
   }
 
-  .card.active{
-    transform:scale(1.06);
+  /* scale phải nằm ở inner — KHÔNG scale card */
+  .card-inner{
+    transform-origin:center center;
   }
 
+  /* giảm gap để không lệch tâm */
+  .carousel-track{
+    gap:22px;
+    justify-content:center;
+  }
+
+  /* thêm đệm 2 bên viewport */
+  .carousel-viewport{
+    padding:0 16px;
+  }
+
+  /* ẩn nút điều hướng */
   .nav{
     display:none;
   }
+
+  /* footer bớt cách quá xa trên mobile */
+  .site-footer{
+    margin-top:180px;
+  }
+
 }
