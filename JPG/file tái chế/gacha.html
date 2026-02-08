@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<title>Gacha Thầy Cô</title>
+
+<style>
+body{
+  font-family: Arial, sans-serif;
+  background: linear-gradient(135deg,#ffe9f3,#e6f0ff);
+  text-align:center;
+  padding:40px;
+}
+
+h1{
+  margin-bottom:20px;
+}
+
+#card{
+  width:260px;
+  height:360px;
+  margin:20px auto;
+  background:white;
+  border-radius:18px;
+  box-shadow:0 10px 30px rgba(0,0,0,.15);
+  padding:15px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  transition:.3s;
+}
+
+#card img{
+  width:180px;
+  height:180px;
+  object-fit:cover;
+  border-radius:12px;
+}
+
+.name{
+  font-size:20px;
+  font-weight:bold;
+  margin-top:10px;
+}
+
+.subject{
+  opacity:.7;
+}
+
+.rarity{
+  margin-top:8px;
+  font-weight:bold;
+}
+
+button{
+  padding:12px 22px;
+  font-size:18px;
+  border:none;
+  border-radius:12px;
+  background:#ff4da6;
+  color:white;
+  cursor:pointer;
+}
+
+button:hover{
+  transform:scale(1.05);
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎴 Gacha Thầy Cô 🎴</h1>
+
+<div id="card">
+  <div>Nhấn quay để nhận thầy/cô</div>
+</div>
+
+<button onclick="roll()">Quay gacha</button>
+
+<script>
+const cards = [
+  {
+    name:"Cô Thắng",
+    subject:"Ngữ Văn",
+    img:"JPG/anhcoThang.JPG",
+    rarity:"SSR 🌟"
+  },
+  {
+    name:"Thầy Toán",
+    subject:"Toán học",
+    img:"JPG/thaytoan.jpg",
+    rarity:"SR ⭐"
+  },
+  {
+    name:"Cô Lý",
+    subject:"Vật lý",
+    img:"JPG/coly.jpg",
+    rarity:"R"
+  }
+];
+
+/* trọng số tỉ lệ ra */
+const weights = [10, 30, 60]; // SSR hiếm hơn
+
+function weightedRandom(){
+  const total = weights.reduce((a,b)=>a+b,0);
+  let r = Math.random()*total;
+  for(let i=0;i<cards.length;i++){
+    if(r < weights[i]) return i;
+    r -= weights[i];
+  }
+  return 0;
+}
+
+function roll(){
+  const i = weightedRandom();
+  const c = cards[i];
+
+  const cardDiv = document.getElementById("card");
+
+  cardDiv.innerHTML = `
+    <img src="${c.img}">
+    <div class="name">${c.name}</div>
+    <div class="subject">${c.subject}</div>
+    <div class="rarity">${c.rarity}</div>
+  `;
+
+  cardDiv.style.transform="scale(1.08)";
+  setTimeout(()=>cardDiv.style.transform="scale(1)",200);
+}
+</script>
+
+</body>
+</html>
