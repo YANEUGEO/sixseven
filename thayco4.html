@@ -51,12 +51,12 @@
 
 <header class="profile-header">
   <div class="profile-wrap">
-    <img src="JPG/anhthaySuyen.JPG">
+    <img id="profileSlider" src="JPG/anhthaySuyen.JPG">
 
     <div class="profile-info">
-      <h1>Trần Thị Triều Mến</h1>
+      <h1>Tôn Thất Suyền </h1>
       <div class="profile-role">
-         Giáo viên bộ môn Giáo dục quốc phòng <br>
+         Giáo viên bộ môn Tin học - cựu chủ nhiệm 10L <br>
         THPT chuyên Hùng Vương
       </div>
 
@@ -319,6 +319,42 @@ Hai năm không phải là quãng thời gian quá dài, nhưng đủ để tạ
 
   </div>
 </footer>
+
+<script>
+/* ================= PROFILE AUTO SLIDER ================= */
+
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const profileImg = document.getElementById("profileSlider");
+  if(!profileImg) return; // không có thì bỏ qua — tránh lỗi
+
+  const profileImages = [
+    "JPG/anhthaySuyen.JPG",
+    "JPG/anhthaySuyen1.JPG",
+    "JPG/anhthaySuyen2.JPG",
+    "JPG/anhthaySuyen3.JPG",
+    "JPG/anhthaySuyen4.JPG"
+  ];
+
+  let i = 0;
+
+  // hiệu ứng mờ nhẹ khi đổi
+  profileImg.style.transition = "opacity .4s";
+
+  setInterval(()=>{
+    profileImg.style.opacity = 0;
+
+    setTimeout(()=>{
+      i = (i + 1) % profileImages.length;
+      profileImg.src = profileImages[i];
+      profileImg.style.opacity = 1;
+    }, 250);
+
+  }, 3000);
+
+});
+</script>
+
 
 <script>
 document.addEventListener("DOMContentLoaded", ()=>{
