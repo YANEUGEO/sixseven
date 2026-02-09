@@ -708,22 +708,22 @@ body{
 /* nút tròn danh sách góp ý */
 
 .mini-circle{
-  position:absolute;
-  right:8px;
-  bottom:8px;
-  width:28px;
-  height:28px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:42px;
+  height:42px;
   border-radius:50%;
   background:#2f7d32;
   color:white;
   text-decoration:none;
-  font-size:14px;
+  font-size:18px;
+  margin-top:12px;
+  box-shadow:0 4px 10px rgba(0,0,0,.15);
+}
 
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  box-shadow:0 4px 10px rgba(0,0,0,.25);
+.mini-circle:hover{
+  transform:scale(1.08);
 }
 
 /* ======================
@@ -1030,50 +1030,6 @@ body{
   outline:none;
 }
 
-/* ===== TEXTAREA + NÚT TRÒN ===== */
-
-.textarea-wrap{
-  position:relative;
-}
-
-.mini-circle{
-  position:absolute;
-  right:-12px;
-  bottom:-12px;
-
-  width:26px;
-  height:26px;
-  border-radius:50%;
-
-  background:#2f7d32;
-  color:white;
-  text-decoration:none;
-
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  font-size:12px;
-  box-shadow:0 4px 10px rgba(0,0,0,.25);
-  transition:.2s;
-}
-
-.mini-circle:hover{
-  transform:scale(1.15);
-}
-
-/* ===== BUTTON ===== */
-
-.feedback-mini button{
-  padding:10px;
-  border:none;
-  border-radius:14px;
-  background:#2f7d32;
-  color:white;
-  font-weight:600;
-  cursor:pointer;
-}
-
 /* ===== MOBILE ===== */
 
 @media (max-width:800px){
@@ -1100,4 +1056,99 @@ body{
   width:16px;
   height:16px;
   cursor:pointer;
+}
+
+
+/* ===== MINI LINK XEM GÓP Ý ===== */
+
+.textarea-wrap{
+  position:relative;
+}
+
+.mini-circle{
+  position:absolute;
+  right:8px;
+  bottom:8px;
+
+  width:28px;
+  height:28px;
+  border-radius:50%;
+
+  background:#2f7d32;
+  color:white;
+  text-decoration:none;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-size:13px;
+  box-shadow:0 4px 10px rgba(0,0,0,.25);
+  z-index:5;
+}
+
+/* ===== BUTTON ===== */
+
+.feedback-mini button{
+  padding:10px;
+  border:none;
+  border-radius:14px;
+  background:#2f7d32;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+}
+
+.mini-circle{
+  z-index:999 !important;
+}
+
+/* ===== FOOTER — CHỮ TO HƠN NỮA ===== */
+
+.site-footer,
+.footer-inner,
+.footer-columns,
+.f-col{
+  text-align:left !important;
+}
+
+/* tiêu đề cột */
+.f-col h3{
+  font-size:26px !important;
+  line-height:1.3;
+}
+
+/* nội dung từng dòng */
+.f-item{
+  font-size:18px !important;
+  line-height:1.6;
+}
+
+/* label form */
+.feedback-mini label{
+  font-size:16px !important;
+}
+
+/* input + textarea */
+.feedback-mini input,
+.feedback-mini textarea{
+  font-size:16px !important;
+}
+
+/* nút gửi */
+.feedback-mini button{
+  font-size:17px !important;
+  padding:12px 18px;
+  align-self:flex-start;
+}
+
+/* dòng cập nhật */
+.footer-update{
+  font-size:15px !important;
+}
+
+/* 2 dòng đầu/cuối footer vẫn căn giữa */
+.footer-top-line{
+  text-align:center !important;
+  font-size:18px;
 }
