@@ -18,7 +18,7 @@
 body{
   font-family:'Poppins', sans-serif;
 
-  background-image:url("JPG/Nen.JPG "); /* đổi tên file */
+  background-image:url("JPG/Nen.JPG"); /* đổi tên file */
   background-size:cover;
   background-position:center;
   background-attachment:fixed; /* hiệu ứng parallax nhẹ */

@@ -125,27 +125,51 @@ body{
 </div>
 
 <script>
-const listEl = document.getElementById("list");
-const data = JSON.parse(localStorage.getItem("feedbackList") || "[]");
+const SHEET_ID = "1NPNX-VIFHZ8ufySI5zaSFyXb-WmUBx-tDh6WLGxjECk";
 
-function formatTime(t){
-  return new Date(t).toLocaleString("vi-VN");
-}
+fetch(`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json`)
+  .then(res => res.text())
+  .then(text => {
+    const json = JSON.parse(text.substring(47, text.length - 2));
+    const rows = json.table.rows || [];
 
-if(data.length === 0){
-  listEl.innerHTML = "<p style='text-align:center;opacity:.7'>Chưa có góp ý nào</p>";
-}else{
+    const data = rows.map(row => {
+      const cells = row.c || [];
+      return {
+        time: cells[0] && (cells[0].f || cells[0].v) || "",
+        name: cells[1] && cells[1].v || "",
+        content: cells[2] && cells[2].v || ""
+      };
+    }).reverse();
+
+    render(data);
+  })
+  .catch(err => {
+    console.error("Lỗi đọc sheet:", err);
+    document.getElementById("list").innerHTML =
+      "<p style='text-align:center;color:red'>Không đọc được dữ liệu góp ý</p>";
+  });
+
+function render(data) {
+  const listEl = document.getElementById("list");
+  if (!data.length) {
+    listEl.innerHTML =
+      "<p style='text-align:center;opacity:.7'>Chưa có góp ý nào</p>";
+    return;
+  }
   listEl.innerHTML = data.map(x => `
     <div class="item">
       <div class="row">
-        <span class="name">${x.name}</span>
-        <span>${formatTime(x.time)}</span>
+        <span class="name">${x.name || "Ẩn danh"}</span>
+        <span>${x.time || ""}</span>
       </div>
-      <div class="content">${x.content}</div>
+      <div class="content">${x.content || ""}</div>
     </div>
   `).join("");
 }
 </script>
+
+
 
 </body>
 </html>
