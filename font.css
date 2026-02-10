@@ -1102,53 +1102,184 @@ body{
 .mini-circle{
   z-index:999 !important;
 }
+/* ===== FOOTER — PHÓNG TO + CĂN TRÁI (CHỈ TRONG FOOTER) ===== */
 
-/* ===== FOOTER — CHỮ TO HƠN NỮA ===== */
-
-.site-footer,
-.footer-inner,
-.footer-columns,
-.f-col{
-  text-align:left !important;
+.site-footer .f-col{
+  text-align:left;
 }
 
-/* tiêu đề cột */
-.f-col h3{
-  font-size:26px !important;
-  line-height:1.3;
+.site-footer .f-col h3{
+  font-size:24px !important;
+  margin-bottom:8px;
 }
 
-/* nội dung từng dòng */
-.f-item{
+.site-footer .f-item{
   font-size:18px !important;
-  line-height:1.6;
+  margin:4px 0;
 }
 
-/* label form */
-.feedback-mini label{
+.site-footer label{
   font-size:16px !important;
 }
 
-/* input + textarea */
-.feedback-mini input,
-.feedback-mini textarea{
+/* input & textarea trong footer */
+.site-footer .feedback-mini input,
+.site-footer .feedback-mini textarea{
   font-size:16px !important;
 }
 
 /* nút gửi */
-.feedback-mini button{
-  font-size:17px !important;
-  padding:12px 18px;
-  align-self:flex-start;
+.site-footer .feedback-mini button{
+  font-size:16px !important;
+  padding:10px 12px;
 }
 
-/* dòng cập nhật */
-.footer-update{
+/* ===== 2 dòng đầu/cuối vẫn căn giữa ===== */
+
+.site-footer .footer-top-line{
+  text-align:center !important;
+  font-size:16px !important;
+}
+
+/* ===== THANH DƯỚI + @ GÓC PHẢI ===== */
+
+.footer-bottom-bar{
+  position:relative;
+  text-align:center;
+  font-size:16px;
+  margin-top:8px;
+}
+
+/* dấu @ góc phải dưới */
+.footer-at{
+  position:absolute;
+  right:0;
+  bottom:0;
+  font-size:18px;
+  opacity:.7;
+}
+/* ===== FOOTER — ÉP HẸP DỌC TỐI ĐA (CHỈ TRONG FOOTER) ===== */
+
+.site-footer{
+  margin-top:480px !important;
+}
+
+/* khung giữa */
+.site-footer .footer-inner{
+  padding:8px 14px !important;
+}
+
+/* dòng trên & dưới */
+.site-footer .footer-top-line{
+  margin:4px 0 !important;
+  font-size:15px !important;
+  line-height:1.2;
+}
+
+/* grid cột */
+.site-footer .footer-columns{
+  gap:34px !important;
+}
+
+/* tiêu đề cột */
+.site-footer .f-col h3{
+  font-size:22px !important;
+  margin:2px 0 4px !important;
+  line-height:1.15;
+}
+
+/* từng dòng text */
+.site-footer .f-item{
+  margin:1px 0 !important;
+  font-size:17px !important;
+  line-height:1.2;
+}
+
+/* divider */
+.site-footer .footer-divider{
+  margin:4px 0 !important;
+}
+
+/* ===== FORM GÓP Ý ===== */
+
+.site-footer .feedback-mini{
+  gap:4px !important;
+}
+
+.site-footer .feedback-mini input,
+.site-footer .feedback-mini textarea{
+  padding:6px 8px !important;
   font-size:15px !important;
 }
 
-/* 2 dòng đầu/cuối footer vẫn căn giữa */
-.footer-top-line{
+.site-footer .feedback-mini textarea{
+  min-height:44px !important;
+}
+
+.site-footer .public-check{
+  margin:2px 0 !important;
+  font-size:14px !important;
+}
+
+/* nút gửi */
+.site-footer .feedback-mini button{
+  padding:7px !important;
+  font-size:15px !important;
+}
+
+/* nút tròn xem góp ý */
+.site-footer .mini-circle{
+  width:24px !important;
+  height:24px !important;
+  font-size:12px !important;
+}
+/* ===== FOOTER — GIỮ HẸP + PHÓNG TO CHỮ LẠI ===== */
+
+.site-footer .f-col h3{
+  font-size:26px !important;
+}
+
+.site-footer .f-item{
+  font-size:19px !important;
+}
+
+.site-footer label,
+.site-footer .public-check{
+  font-size:17px !important;
+}
+
+.site-footer .feedback-mini input,
+.site-footer .feedback-mini textarea{
+  font-size:17px !important;
+}
+
+.site-footer .feedback-mini button{
+  font-size:17px !important;
+}
+
+/* 2 dòng trên & dưới */
+.site-footer .footer-top-line{
+  font-size:17px !important;
+}
+
+/* dấu @ */
+.footer-at{
+  font-size:20px !important;
+}
+/* ===== TRẠM CUỐI SIÊU TO — CHỈ FOOTER ===== */
+
+.site-footer .footer-top-line.footer-station{
   text-align:center !important;
-  font-size:18px;
+  color:#2f7d32 !important;
+  font-weight:800 !important;
+  font-size:36px !important;
+  line-height:1.05 !important;
+  margin:8px 0 !important;
+}
+
+
+/* giữ dòng © nhỏ */
+.site-footer .footer-top-line{
+  font-size:16px !important;
+  opacity:.75;
 }

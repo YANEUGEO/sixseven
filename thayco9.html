@@ -249,9 +249,11 @@ Hai năm không phải là quãng thời gian quá dài, nhưng đủ để tạ
 
   <div class="footer-inner">
 
-    <div class="footer-top-line">
-      🚏 Đã đến trạm cuối 🚏
-    </div>
+    <div class="footer-top-line footer-station">
+  🚏 Đã đến trạm cuối 🚏
+</div>
+
+
 
     <div class="footer-columns">
 
@@ -277,50 +279,58 @@ Hai năm không phải là quãng thời gian quá dài, nhưng đủ để tạ
 
       <!-- ===== CỘT GIỮA ===== -->
       <div class="f-col">
-        <h3>Thực hiện bởi</h3>
-        <div class="f-item">ChatGPT</div>
-
-        <h3>Và sự góp mặt của:</h3>
-        <div class="f-item">Trường Giang và Hải Đăng</div>
-        <div class="f-item">Hồng Ngọc và Bảo Châu</div>
+        <h3>Nhóm tác giả</h3>
+        <div class="f-item">Hồng Ngọc</div>
+        <div class="f-item">Bảo Châu</div>
         <div class="f-item">Minh Khoa</div>
+        <div class="f-item">Trường Giang</div>        
+        <div class="f-item">Hải Đăng</div>        
       </div>
 
-      <!-- ===== CỘT GÓP Ý ===== -->
+     <!-- ===== CỘT GÓP Ý ===== -->
 <div class="f-col">
-  <h3>Hòm thư góp ý</h3>
 
-  <form id="feedbackForm2" class="feedback-mini">
+  <div class="feedback-mini">
 
-    <input id="fbName2" placeholder="Tên/nickname/email/sđt">
+    <h3>Hòm Thư Góp Ý</h3>
 
-    <div class="textarea-wrap">
-      <textarea id="fbContent2" placeholder="Nội dung góp ý"></textarea>
-      <a href="nhangopy.html" class="mini-circle">📋</a>
-    </div>
+    <form id="fbForm">
 
-    <!-- checkbox công khai -->
-    <label class="public-check">
-  <input type="checkbox" id="fbPublic" checked>
-  Đồng ý công khai góp ý
-</label>
+      <input id="fbName" placeholder="Tên / nickname / email / sđt">
+
+      <div class="textarea-wrap">
+        <textarea id="fbContent" placeholder="Nội dung góp ý" required></textarea>
+
+        <!-- nút xem góp ý -->
+        <a href="nhangopy.html" class="mini-circle" title="Xem danh sách chứa những ý kiến góp ý (meo :>)">📋</a>
+      </div>
+
+      <label class="public-check">
+        <input type="checkbox" id="fbPublic" required>
+        Đồng ý công khai góp ý
+      </label>
+
+      <button type="submit">Gửi góp ý</button>
+
+    </form>
+
+  </div>
+
+</div>
 
 
 
-    <button type="submit">Gửi góp ý</button>
-  </form>
 </div>
 
 
     </div>
 
     <div class="footer-top-line">
-      © 2026 • Cảm ơn vì đã trở thành một phần thanh xuân của nhau
+      © 2026 • Tri ân thầy cô
     </div>
 
   </div>
 </footer>
-
 <script>
 document.addEventListener("DOMContentLoaded", ()=>{
 
