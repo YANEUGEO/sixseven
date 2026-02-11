@@ -106,54 +106,73 @@
                         <!-- ===== LỚP 11 ===== -->
   <div id="stop11" class="memory-stop">
     <div class="memory-year"> LỚP 11- HẠT MẦM KỈ NIỆM MỚI CHỚM</div>
-    <div class="memory-summary">
-      Tri ân nhà giáo đầu tiên lớp dành cho cô.
+
+     <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Dấu mốc đầu tiên của hành trình học tập">
+      <img src="JPG/atc7.0.JPG">
     </div>
-                   <!-- summary 1 -->
-    <div class="memory-gallery">
 
-      <div class="memory-item">
-        <img src="JPG/atc7.0.JPG">
-        <p>Dấu mốc đầu tiên của hành trình học tập. </p>
-      </div>
+    <div class="slide" data-caption="Một tiết Văn">
+      <img src="JPG/atc7.1.JPG">
+    </div>
 
-     
-    </div>    
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
 
-      <!-- summary 2 -->
-    <div class="memory-summary">
-     Những tiết học Văn nuôi lớn tâm hồn.
-    </div>    
+    <p class="slider-caption"></p>
 
-    <div class="memory-gallery">
+  </div>
 
-      <div class="memory-item">
-        <img src="JPG/atc7.1.JPG">
-        <p>Một tiết Văn.</p>
-      </div>  
-    </div>            
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Tri ân nhà giáo đầu tiên lớp dành cho cô</div>
+
+    <div class="summary-desc">
+      Lễ tri ân nhà giáo đầu tiên lớp dành cho cô diễn ra trong không khí ấm áp và chân thành. Những lời cảm ơn và món quà nhỏ thể hiện sự kính trọng, biết ơn đối với sự tận tâm của cô, tạo nên một kỷ niệm đẹp của tập thể lớp.
 
 
+    </div>
+  </div>
+  </div>
                       <!-- ===== LỚP 12 ===== -->
 
                      <!-- summary 1  -->
    <div id="stop12" class="memory-stop">
     <div class="memory-year">Lớp 12 – Kết thúc một hành trình, giữ trọn một tình cảm.</div>
-    <div class="memory-summary">
-    Buổi tri ân nhà giáo cuối cùng được ở cạnh cô.
+
+     <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Cô gái văn chương">
+      <img src="JPG/atc7.2.JPG">
     </div>
 
-    <div class="memory-gallery">
+    <div class="slide" data-caption="Cả lớp bên nhau">
+      <img src="JPG/atc7.3.JPG">
+    </div>
 
-      <div class="memory-item">
-        <img src="JPG/atc7.2.JPG">
-        <p>Cô gái văn chương . </p>
-      </div>
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
 
-      <div class="memory-item">
-        <img src="JPG/atc7.3.JPG">
-        <p>Cả lớp bên nhau . </p>
-      </div>
+    <p class="slider-caption"></p>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Buổi tri ân nhà giáo cuối cùng được ở cạnh cô.</div>
+
+    <div class="summary-desc">
+      Buổi tri ân nhà giáo cuối cùng được ở cạnh cô diễn ra trong không khí xúc động và trân trọng. Những lời cảm ơn chân thành và tình cảm của cả lớp đã khép lại một chặng đường gắn bó bằng một kỷ niệm thật đẹp.
+
+    </div>
+  </div>
 
 </section>
 
@@ -277,8 +296,7 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-const milestonePercents = [10,40,67];
-
+const milestonePercents = [1,29,74];
 
 let activeIndex = -1;
 let bubbleTimer = null;
@@ -460,16 +478,25 @@ function update(){
     `translate(${posX}px,${posY}px) scale(${scale})`;
 }
 
-document.querySelectorAll(".memory-item img").forEach(img=>{
-  img.onclick = e=>{
+/* click mở ảnh — áp dụng cho memory + slider */
+
+document.querySelectorAll(".memory-item img, .slider-gallery img")
+.forEach(img=>{
+  img.addEventListener("click", e=>{
     e.stopPropagation();
+
     lb.style.display = "flex";
     lbImg.src = img.src;
-    scale = 1; posX = 0; posY = 0;
+
+    scale = 1;
+    posX = 0;
+    posY = 0;
     update();
+
     document.body.style.overflow = "hidden";
-  };
+  });
 });
+
 
 /* scroll zoom */
 
@@ -599,24 +626,64 @@ document.getElementById("feedbackForm2").onsubmit = function(e){
 };
 </script>
 
-
-
 <script>
-const d = new Date(document.lastModified);
+/* ===== SLIDER + CAPTION + ARROW + AUTO 3s ===== */
 
-document.getElementById("lastUpdate").textContent =
-  d.toLocaleDateString("vi-VN") + " " +
-  d.toLocaleTimeString("vi-VN");
+document.querySelectorAll(".slider-gallery").forEach(gallery=>{
+
+  const slides = gallery.querySelectorAll(".slide");
+  const caption = gallery.querySelector(".slider-caption");
+  const prev = gallery.querySelector(".prev");
+  const next = gallery.querySelector(".next");
+
+  if(!slides.length) return;
+
+  let i = 0;
+  let timer;
+
+  function show(n){
+    slides.forEach(s=>s.classList.remove("active"));
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("active");
+
+    if(caption){
+      caption.textContent = slides[i].dataset.caption || "";
+    }
+  }
+
+  function start(){
+    timer = setInterval(()=> show(i+1), 3000);
+  }
+
+  function reset(){
+    clearInterval(timer);
+    start();
+  }
+
+  if(next){
+    next.onclick = ()=>{ show(i+1); reset(); };
+  }
+
+  if(prev){
+    prev.onclick = ()=>{ show(i-1); reset(); };
+  }
+
+  show(0);
+  start();
+});
 </script>
 
 
+
+
+
 <div id="celebrateLayer"></div>
+
 <div id="imgLightbox" class="img-lightbox">
   <span class="lb-close">✖</span>
   <img id="lbImg">
 </div>
+
+
 </body>
 </html>
-
-
-

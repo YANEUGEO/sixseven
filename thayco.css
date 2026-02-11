@@ -1502,4 +1502,392 @@ RESPONSIVE
   opacity:.75;
 }
 
+/* ===== SUMMARY SLIDER ===== */
 
+.slider-gallery .slide{
+  display:none;
+}
+
+.slider-gallery .slide.active{
+  display:flex;
+}
+/* ===== SLIDER: caption xuống dưới ảnh ===== */
+
+.slider-gallery .memory-item{
+  flex-direction:column;
+  align-items:center;
+  text-align:center;
+}
+
+.slider-gallery .memory-item img{
+  width:100%;
+  max-width:420px;
+  height:auto;
+}
+
+.slider-gallery .memory-item p{
+  margin-top:10px;
+}
+/* ===== SUMMARY SLIDER LEFT IMAGE ===== */
+
+.summary-slider{
+  display:flex;
+  gap:24px;
+  align-items:center;
+
+  background:#fff;
+  border-radius:18px;
+  padding:16px;
+  box-shadow:0 10px 25px rgba(0,0,0,.08);
+}
+
+/* khối ảnh */
+
+.summary-slider .slider-gallery{
+  width:340px;
+  flex-shrink:0;
+}
+
+.summary-slider img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+  border-radius:14px;
+}
+
+/* khối chữ */
+
+.summary-text{
+  flex:1;
+}
+
+.summary-title{
+  font-size:18px;
+  font-weight:700;
+  color:#1f7a5c;
+  margin-bottom:10px;
+}
+
+.summary-caption{
+  font-size:15px;
+  line-height:1.6;
+  opacity:.9;
+}
+
+/* slide show */
+
+.slider-gallery .slide{
+  display:none;
+}
+
+.slider-gallery .slide.active{
+  display:block;
+}
+
+/* mobile */
+
+@media(max-width:700px){
+  .summary-slider{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .summary-slider .slider-gallery{
+    width:100%;
+  }
+}
+/* caption dưới ảnh */
+
+.slider-caption{
+  margin-top:10px;
+  font-size:14px;
+  text-align:center;
+  opacity:.9;
+}
+.slider-gallery{
+  position:relative;
+}
+
+.slide-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:40px;
+  height:40px;
+  border:none;
+  border-radius:50%;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  z-index:50;
+}
+
+.slide-btn.prev{ left:6px; }
+.slide-btn.next{ right:6px; }
+/* ===== FIX SLIDER GALLERY ===== */
+
+.slider-gallery{
+  position:relative;
+  width:360px;
+  flex-shrink:0;
+}
+
+/* slide chỉ hiện 1 cái */
+
+.slider-gallery .slide{
+  display:none !important;
+}
+
+.slider-gallery .slide.active{
+  display:block !important;
+}
+
+/* ảnh */
+
+.slider-gallery .slide img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:16px;
+  display:block;
+}
+
+/* caption dưới ảnh */
+
+.slider-caption{
+  text-align:center;
+  margin-top:12px;
+  font-size:15px;
+}
+
+/* nút mũi tên */
+
+.slide-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border:none;
+  border-radius:50%;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  z-index:999;
+}
+
+.slide-btn.prev{ left:8px; }
+.slide-btn.next{ right:8px; }
+.summary-slider{
+  display:flex;
+  gap:28px;
+  align-items:center;
+}
+.summary-title{
+  writing-mode:horizontal-tb !important;
+  word-break:normal !important;
+}
+/* ===== SLIDER SAFE MODE ===== */
+
+.slider-gallery{
+  position:relative;
+  width:360px;
+}
+
+/* chỉ 1 slide hiện */
+
+.slider-gallery .slide{
+  display:none !important;
+}
+
+.slider-gallery .slide.active{
+  display:block !important;
+}
+
+.slider-gallery img{
+  width:100%;
+  height:240px;
+  object-fit:cover;
+  border-radius:16px;
+  display:block;
+}
+
+/* arrows */
+
+.slide-btn{
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  border:none;
+  background:rgba(0,0,0,.6);
+  color:#fff;
+  font-size:22px;
+  cursor:pointer;
+  z-index:999;
+}
+
+.slide-btn.prev{ left:8px; }
+.slide-btn.next{ right:8px; }
+
+/* caption */
+
+.slider-caption{
+  text-align:center;
+  margin-top:10px;
+}
+/* ===== LIGHTBOX FULL CONTROL ===== */
+
+.img-lightbox{
+  display:none;
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.9);
+  z-index:10000;
+  justify-content:center;
+  align-items:center;
+  overflow:hidden;
+}
+
+.img-lightbox img{
+  max-width:90%;
+  max-height:90%;
+  transform-origin:center;
+  transition:transform .15s ease;
+  cursor:zoom-in;
+}
+
+.lb-close{
+  position:absolute;
+  top:20px;
+  right:28px;
+  color:#fff;
+  font-size:36px;
+  cursor:pointer;
+  z-index:2;
+}
+
+.slider-gallery .slide{
+  display:none !important;
+}
+
+.slider-gallery .slide.active{
+  display:block !important;
+}
+/* cho phép click ảnh */
+
+.slider-gallery .slide{
+  pointer-events:none;
+}
+
+.slider-gallery .slide.active{
+  pointer-events:auto;
+}
+/* ===== CARD DECOR ===== */
+
+.memory-summary,
+.memory-card,
+.summary-card,
+.feedback-card{
+
+  background: linear-gradient(180deg,#ffffff,#f6fbff);
+  border-radius: 18px;
+
+  padding: 22px 24px;
+
+  border: 1px solid rgba(80,150,220,0.18);
+
+  box-shadow:
+    0 8px 24px rgba(0,0,0,0.08),
+    inset 0 1px 0 rgba(255,255,255,0.7);
+
+  position: relative;
+  overflow: hidden;
+
+  transition: 
+    transform .25s ease,
+    box-shadow .25s ease;
+}
+
+/* ===== góc phát sáng nhẹ ===== */
+
+.memory-summary::before,
+.memory-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background: radial-gradient(
+    circle at top right,
+    rgba(120,190,255,0.18),
+    transparent 55%
+  );
+  pointer-events:none;
+}
+
+/* ===== hover nổi ===== */
+
+.memory-summary:hover,
+.memory-card:hover{
+  transform: translateY(-6px);
+  box-shadow:
+    0 16px 36px rgba(0,0,0,0.14);
+}
+
+/* ===== tiêu đề trong card ===== */
+
+.memory-summary h3,
+.card-title{
+  font-size: 20px;
+  font-weight: 700;
+  color: #1f5fa8;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+/* gạch nhấn tiêu đề */
+
+.memory-summary h3::after,
+.card-title::after{
+  content:"";
+  display:block;
+  width:48px;
+  height:4px;
+  border-radius:4px;
+  margin-top:6px;
+  background: linear-gradient(90deg,#4da6ff,#8fd3ff);
+}
+
+/* ===== text trong card ===== */
+
+.memory-summary p,
+.card-desc{
+  color:#445;
+  line-height:1.6;
+  font-size:15px;
+}
+
+/* ===== icon badge góc card ===== */
+
+.card-badge{
+  position:absolute;
+  top:12px;
+  right:14px;
+  font-size:20px;
+  opacity:.6;
+}
+/* ===== PROFILE TEXT SCROLL ===== */
+
+.profile-info{
+  max-height: 320px;     /* chỉnh số này theo ý */
+  overflow-y: auto;
+  padding-right: 10px;   /* tránh đè thanh scroll */
+}
+
+/* giữ layout đẹp khi scroll */
+.profile-wrap{
+  align-items: flex-start;
+}

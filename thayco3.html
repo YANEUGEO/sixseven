@@ -237,6 +237,7 @@ Chúng em kính chúc cô luôn dồi dào sức khỏe, tràn đầy hạnh ph�
 
   </div>
 </footer>
+
 <script>
 document.addEventListener("DOMContentLoaded", ()=>{
 
@@ -251,8 +252,7 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-const milestonePercents = [10,40,67];
-
+const milestonePercents = [1,29,74];
 
 let activeIndex = -1;
 let bubbleTimer = null;
@@ -434,16 +434,25 @@ function update(){
     `translate(${posX}px,${posY}px) scale(${scale})`;
 }
 
-document.querySelectorAll(".memory-item img").forEach(img=>{
-  img.onclick = e=>{
+/* click mở ảnh — áp dụng cho memory + slider */
+
+document.querySelectorAll(".memory-item img, .slider-gallery img")
+.forEach(img=>{
+  img.addEventListener("click", e=>{
     e.stopPropagation();
+
     lb.style.display = "flex";
     lbImg.src = img.src;
-    scale = 1; posX = 0; posY = 0;
+
+    scale = 1;
+    posX = 0;
+    posY = 0;
     update();
+
     document.body.style.overflow = "hidden";
-  };
+  });
 });
+
 
 /* scroll zoom */
 
@@ -573,24 +582,64 @@ document.getElementById("feedbackForm2").onsubmit = function(e){
 };
 </script>
 
-
-
 <script>
-const d = new Date(document.lastModified);
+/* ===== SLIDER + CAPTION + ARROW + AUTO 3s ===== */
 
-document.getElementById("lastUpdate").textContent =
-  d.toLocaleDateString("vi-VN") + " " +
-  d.toLocaleTimeString("vi-VN");
+document.querySelectorAll(".slider-gallery").forEach(gallery=>{
+
+  const slides = gallery.querySelectorAll(".slide");
+  const caption = gallery.querySelector(".slider-caption");
+  const prev = gallery.querySelector(".prev");
+  const next = gallery.querySelector(".next");
+
+  if(!slides.length) return;
+
+  let i = 0;
+  let timer;
+
+  function show(n){
+    slides.forEach(s=>s.classList.remove("active"));
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("active");
+
+    if(caption){
+      caption.textContent = slides[i].dataset.caption || "";
+    }
+  }
+
+  function start(){
+    timer = setInterval(()=> show(i+1), 3000);
+  }
+
+  function reset(){
+    clearInterval(timer);
+    start();
+  }
+
+  if(next){
+    next.onclick = ()=>{ show(i+1); reset(); };
+  }
+
+  if(prev){
+    prev.onclick = ()=>{ show(i-1); reset(); };
+  }
+
+  show(0);
+  start();
+});
 </script>
 
 
+
+
+
 <div id="celebrateLayer"></div>
+
 <div id="imgLightbox" class="img-lightbox">
   <span class="lb-close">✖</span>
   <img id="lbImg">
 </div>
+
+
 </body>
 </html>
-
-
-

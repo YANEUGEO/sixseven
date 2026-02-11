@@ -107,36 +107,68 @@
                      <!-- summary 1  -->
    <div id="stop12" class="memory-stop">
     <div class="memory-year">Lớp 12 – Khoảnh khắc cuối bên nhau, kỉ niệm còn nguyên vẹn.</div>
-    <div class="memory-summary">
-      Ngày Nhà giáo lần đầu bên cô
-    </div>
-
-    <div class="memory-gallery">
-
-      <div class="memory-item">
-        <img src="JPG/atc2.0.JPG">
-        <p> Silence 🤫</p>
-      </div>
-
-      <div class="memory-item">
-        <img src="JPG/atc2.1.JPG">
-        <p>Chúc mừng cô ngày hạnh phúc 💐💍</p>
-      </div>
-
-    </div>
-                     <!-- summary 2  -->
-    <div class="memory-summary">
-      Kỉ niệm nấu ăn tại lớp.
-    </div>
-
-    <div class="memory-gallery">
-
-      <div class="memory-item">
-        <img src="JPG/atc2.2.JPG">
-        <p>Mlem 🥤🥗🥛 😋</p>
-      </div>
-
  
+ <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Silence 🤫">
+      <img src="JPG/atc2.0.JPG">
+    </div>
+
+    <div class="slide" data-caption="Chúc mừng cô ngày hạnh phúc 💐💍">
+      <img src="JPG/atc2.1.JPG">
+    </div>
+
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
+
+    <p class="slider-caption"></p>
+
+  </div>
+
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Ngày Nhà giáo lần đầu bên cô</div>
+
+    <div class="summary-desc">
+      Ngày Nhà giáo Việt Nam lần đầu tiên lớp được ở bên cô mang đến nhiều cảm xúc mới mẻ và ý nghĩa. Không khí chúc mừng giản dị nhưng ấm áp, ghi dấu một kỷ niệm đẹp trong hành trình đồng hành cùng cô
+
+    </div>
+  </div>
+</div>
+
+ <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Mlem 🥤🥗🥛 😋">
+      <img src="JPG/atc2.2.JPG">
+    </div>
+
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
+
+    <p class="slider-caption"></p>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Kỉ niệm nấu ăn tại lớp</div>
+
+    <div class="summary-desc">
+      Kỉ niệm nấu ăn tại lớp là một hoạt động vui vẻ và đầy tiếng cười của cả tập thể. Mọi người cùng chuẩn bị, chia việc và thưởng thức thành quả chung, tạo nên một trải nghiệm đáng nhớ và gắn kết
+
+    </div>
+  </div>
+
+
+
+
 
   </div>
 
@@ -248,6 +280,7 @@ Chúng em thực sự biết ơn cô vì đã luôn ở bên, dìu dắt và tru
 
   </div>
 </footer>
+
 <script>
 document.addEventListener("DOMContentLoaded", ()=>{
 
@@ -262,8 +295,7 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-const milestonePercents = [1,20,55];
-
+const milestonePercents = [1,29,74];
 
 let activeIndex = -1;
 let bubbleTimer = null;
@@ -445,16 +477,25 @@ function update(){
     `translate(${posX}px,${posY}px) scale(${scale})`;
 }
 
-document.querySelectorAll(".memory-item img").forEach(img=>{
-  img.onclick = e=>{
+/* click mở ảnh — áp dụng cho memory + slider */
+
+document.querySelectorAll(".memory-item img, .slider-gallery img")
+.forEach(img=>{
+  img.addEventListener("click", e=>{
     e.stopPropagation();
+
     lb.style.display = "flex";
     lbImg.src = img.src;
-    scale = 1; posX = 0; posY = 0;
+
+    scale = 1;
+    posX = 0;
+    posY = 0;
     update();
+
     document.body.style.overflow = "hidden";
-  };
+  });
 });
+
 
 /* scroll zoom */
 
@@ -584,24 +625,64 @@ document.getElementById("feedbackForm2").onsubmit = function(e){
 };
 </script>
 
-
-
 <script>
-const d = new Date(document.lastModified);
+/* ===== SLIDER + CAPTION + ARROW + AUTO 3s ===== */
 
-document.getElementById("lastUpdate").textContent =
-  d.toLocaleDateString("vi-VN") + " " +
-  d.toLocaleTimeString("vi-VN");
+document.querySelectorAll(".slider-gallery").forEach(gallery=>{
+
+  const slides = gallery.querySelectorAll(".slide");
+  const caption = gallery.querySelector(".slider-caption");
+  const prev = gallery.querySelector(".prev");
+  const next = gallery.querySelector(".next");
+
+  if(!slides.length) return;
+
+  let i = 0;
+  let timer;
+
+  function show(n){
+    slides.forEach(s=>s.classList.remove("active"));
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("active");
+
+    if(caption){
+      caption.textContent = slides[i].dataset.caption || "";
+    }
+  }
+
+  function start(){
+    timer = setInterval(()=> show(i+1), 3000);
+  }
+
+  function reset(){
+    clearInterval(timer);
+    start();
+  }
+
+  if(next){
+    next.onclick = ()=>{ show(i+1); reset(); };
+  }
+
+  if(prev){
+    prev.onclick = ()=>{ show(i-1); reset(); };
+  }
+
+  show(0);
+  start();
+});
 </script>
 
 
+
+
+
 <div id="celebrateLayer"></div>
+
 <div id="imgLightbox" class="img-lightbox">
   <span class="lb-close">✖</span>
   <img id="lbImg">
 </div>
+
+
 </body>
 </html>
-
-
-

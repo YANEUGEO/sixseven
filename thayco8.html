@@ -83,17 +83,17 @@
 
   <div class="timeline-milestone" data-target="stop10">
     🚦
-    <div class="milestone-bubble">Level tân binh nhưng nhiệt tình max</div>
+    <div class="milestone-bubble">Nghiêm!</div>
   </div>
 
   <div class="timeline-milestone" data-target="stop11">
     🚦
-    <div class="milestone-bubble">Quậy có tổ chức hơn</div>
+    <div class="milestone-bubble">Bên phải — quay!</div>
   </div>
 
   <div class="timeline-milestone" data-target="stop12">
     🚦
-    <div class="milestone-bubble">Chuyến xe sắp tới bến rồi</div>
+    <div class="milestone-bubble">Nhìn trước — thẳng!</div>
   </div>
 
 
@@ -107,30 +107,62 @@
                      <!-- summary 1  -->
    <div id="stop12" class="memory-stop">
     <div class="memory-year">Lớp 12 – Chặng cuối bên nhau, cảm xúc vẫn đầy như ngày đầu.  </div>
-    <div class="memory-summary">
-      Khoảnh khắc tri ân cuối cùng cùng cô.
+     <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="👉👉 😳 👈👈">
+      <img src="JPG/atc8.0.JPG">
     </div>
 
-    <div class="memory-gallery">
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
 
-      <div class="memory-item">
-        <img src="JPG/atc8.0.JPG">
-        <p> dàlksadjflksjdlkfjlsad </p>
-      </div>
+    <p class="slider-caption"></p>
 
-
-    </div>
-                     <!-- summary 2  -->
-    <div class="memory-summary">
-Những kỉ niệm cuối cấp cùng cô, chúng em gửi lại Đà Lạt – thành phố ngàn hoa.
-    </div>
-
-    <div class="memory-gallery">
-      <div class="memory-item">
-        <img src="JPG/atc8.1.JPG">
-        <p>Mặc</p>
-      </div>
   </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Khoảnh khắc tri ân cuối cùng cùng cô</div>
+
+    <div class="summary-desc">
+      Khoảnh khắc tri ân cuối cùng cùng cô diễn ra trong không khí lắng đọng và đầy biết ơn. Những lời chúc và tình cảm chân thành của lớp đã khép lại chặng đường gắn bó bằng một kỷ niệm thật sâu sắc
+    </div>
+    </div>
+     </div>
+      <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Đà Lạt">
+      <img src="JPG/atc8.1.JPG">
+    </div>
+
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
+
+    <p class="slider-caption"></p>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Những kỉ niệm cuối cấp cùng cô, chúng em gửi lại Đà Lạt – thành phố ngàn hoa</div>
+
+    <div class="summary-desc">
+      Những kỉ niệm cuối cấp cùng cô được chúng em gửi lại nơi Đà Lạt — thành phố ngàn hoa. Chuyến đi khép lại bằng nhiều khoảnh khắc đẹp, tiếng cười và sự gắn bó, trở thành dấu ấn khó quên của những ngày cuối bên nhau
+
+    </div>
+  </div>
+
+
+
+
+  </div>
+
 
 </section>
 
@@ -254,8 +286,7 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-const milestonePercents = [10,40,67];
-
+const milestonePercents = [1,29,74];
 
 let activeIndex = -1;
 let bubbleTimer = null;
@@ -437,16 +468,25 @@ function update(){
     `translate(${posX}px,${posY}px) scale(${scale})`;
 }
 
-document.querySelectorAll(".memory-item img").forEach(img=>{
-  img.onclick = e=>{
+/* click mở ảnh — áp dụng cho memory + slider */
+
+document.querySelectorAll(".memory-item img, .slider-gallery img")
+.forEach(img=>{
+  img.addEventListener("click", e=>{
     e.stopPropagation();
+
     lb.style.display = "flex";
     lbImg.src = img.src;
-    scale = 1; posX = 0; posY = 0;
+
+    scale = 1;
+    posX = 0;
+    posY = 0;
     update();
+
     document.body.style.overflow = "hidden";
-  };
+  });
 });
+
 
 /* scroll zoom */
 
@@ -576,24 +616,64 @@ document.getElementById("feedbackForm2").onsubmit = function(e){
 };
 </script>
 
-
-
 <script>
-const d = new Date(document.lastModified);
+/* ===== SLIDER + CAPTION + ARROW + AUTO 3s ===== */
 
-document.getElementById("lastUpdate").textContent =
-  d.toLocaleDateString("vi-VN") + " " +
-  d.toLocaleTimeString("vi-VN");
+document.querySelectorAll(".slider-gallery").forEach(gallery=>{
+
+  const slides = gallery.querySelectorAll(".slide");
+  const caption = gallery.querySelector(".slider-caption");
+  const prev = gallery.querySelector(".prev");
+  const next = gallery.querySelector(".next");
+
+  if(!slides.length) return;
+
+  let i = 0;
+  let timer;
+
+  function show(n){
+    slides.forEach(s=>s.classList.remove("active"));
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("active");
+
+    if(caption){
+      caption.textContent = slides[i].dataset.caption || "";
+    }
+  }
+
+  function start(){
+    timer = setInterval(()=> show(i+1), 3000);
+  }
+
+  function reset(){
+    clearInterval(timer);
+    start();
+  }
+
+  if(next){
+    next.onclick = ()=>{ show(i+1); reset(); };
+  }
+
+  if(prev){
+    prev.onclick = ()=>{ show(i-1); reset(); };
+  }
+
+  show(0);
+  start();
+});
 </script>
 
 
+
+
+
 <div id="celebrateLayer"></div>
+
 <div id="imgLightbox" class="img-lightbox">
   <span class="lb-close">✖</span>
   <img id="lbImg">
 </div>
+
+
 </body>
 </html>
-
-
-

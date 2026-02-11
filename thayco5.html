@@ -51,18 +51,20 @@
 
 <header class="profile-header">
   <div class="profile-wrap">
-    <img src="JPG/anhthayCuong.JPG">
+    <img id="profileSlider" src="JPG/anhthayCuong.JPG">
 
     <div class="profile-info">
-      <h1>Trần Thị Triều Mến</h1>
+      <h1>Võ Văn Cường</h1>
       <div class="profile-role">
-         Giáo viên bộ môn Giáo dục quốc phòng <br>
+         Giáo viên Công nghệ – Người đồng hành suốt ba năm cấp ba <br>
         THPT chuyên Hùng Vương
       </div>
 
       <p>
-        Đến nay cô Mến đã gắn bó với lớp 12L chúng mình được ba năm. Là một giáo viên trẻ tràn đầy nhiệt huyết, cô không chỉ mang đến kiến thức mà còn đem theo cả sự gần gũi, hòa đồng, xóa nhòa khoảng cách giữa cô và trò. <br>
-        Nhờ có cô mà môn Quốc phòng đã trở thành một môn học thú vị với chúng mình dù đôi lúc phải vác súng chạy quanh sân trường. Tất cả những kỷ niệm ấy, dưới sự dẫn dắt và đồng hành của cô, đã trở thành một phần thanh xuân tươi đẹp của chúng em. <br>Cảm ơn cô Mến, vì đã luôn là điểm tựa, là người bạn đồng hành đáng tin cậy của tập thể 12L trong suốt chặng đường đáng nhớ này.
+     Thầy Võ Văn Cường là giáo viên Công nghệ đã gắn bó với tập thể lớp chúng em suốt trọn vẹn ba năm cấp ba. Thoạt nhìn, thầy mang dáng vẻ của một người làm kỹ thuật: trầm tĩnh, ít nói và có phần nghiêm nghị. Nhưng càng học lâu, chúng em càng nhận ra phía sau vẻ ngoài ấy là một người thầy vô cùng thực tế, giàu trải nghiệm sống và thấu hiểu học trò.
+Những bài giảng của thầy không chỉ đến từ sách vở mà còn được chắt lọc từ chính cuộc sống. Thầy thường dẫn dắt bài học bằng những câu chuyện rất đời, rất thật – từ họ hàng, bạn bè cho đến những trải nghiệm cá nhân của chính thầy. Điều khiến chúng em vừa bất ngờ vừa thích thú là “mạng lưới người quen” vô cùng phong phú của thầy. Mỗi khi thầy nhắc đến những cụm từ quen thuộc như: “chú tôi”, “bạn tôi”, “em vợ của anh họ của bạn cấp ba tôi”… cả lớp lại bật cười vì sự dí dỏm và duyên dáng rất riêng. Chính những câu chuyện tưởng chừng giản dị ấy lại mang đến cho chúng em những bài học sâu sắc, thực tế và vô cùng đắt giá – những điều mà học lý thuyết suông nhiều năm cũng chưa chắc lĩnh hội được.
+Thầy luôn quan tâm và tôn trọng học sinh, dành sự chú ý đến từng em thông qua cả hoạt động học thuật lẫn các hoạt động xã hội. Dù vẻ ngoài có phần khó gần, nhưng khi tiếp xúc rồi, chúng em mới hiểu thầy là một người hòa đồng, dễ tính và luôn tạo cho học sinh cảm giác an toàn, không áp lực trong học tập. Nhờ thầy, môn Công nghệ – vốn được xem là một môn khó ở bậc THPT, nhất là tại trường chuyên tỉnh – trở nên gần gũi, thú vị và mở ra cho chúng em những cơ hội mà trước đây tưởng chừng rất xa vời.
+
       </p>
     </div>
   </div>
@@ -106,35 +108,36 @@
   <div class="memory-year">
     LỚP 10 
   </div>
+ <div class="summary-slider">
 
-  <!-- summary 1 -->
-  <div class="memory-summary">
-    Những ngày 
-  </div>
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
 
-  <div class="memory-gallery">
-    <div class="memory-item">
-      <img src="JPG/atc.JPG">
-      <p>Cô </p>
+    <div class="slide active" data-caption="Hội chị đẹp 12L">
+      <img src="JPG/atc1.12.JPG">
     </div>
-  </div>
 
-  <!-- summary 2 -->
-  <div class="memory-summary">
-    Dịp 
-  </div>
-
-  <div class="memory-gallery">
-    <div class="memory-item">
-      <img src="JPG/atc.JPG">
-      <p>...</p>
+    <div class="slide" data-caption="Cả lớp bên nhau">
+      <img src="JPG/atc1.13.JPG">
     </div>
+
+    <div class="slide" data-caption="Khoảnh khắc cô mỉm cười">
+      <img src="JPG/atc1.14.JPG">
+    </div>
+
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
+
+    <p class="slider-caption"></p>
+
   </div>
 
-  <div class="memory-gallery">
-    <div class="memory-item">
-      <img src="JPG/atc.JPG">
-      <p>... </p>
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Lần tri ân cuối bên cô</div>
+
+    <div class="summary-desc">
+      Đoạn mô tả này KHÔNG thay đổi theo ảnh.
     </div>
   </div>
 
@@ -146,36 +149,39 @@
                    <!-- summary 1 -->
    <div id="stop11" class="memory-stop">
     <div class="memory-year"> LỚP 11</div>
-    <div class="memory-summary">
-      với lớp.
+ <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Hội chị đẹp 12L">
+      <img src="JPG/atc1.12.JPG">
     </div>
 
-    <div class="memory-gallery">
-
-      <div class="memory-item">
-        <img src="JPG/atc1.JPG">
-        <p>Lần đ/p>
-      </div>
-
-      <div class="memory-item">
-        <img src="JPG/atc.JPG">
-        <p>...</p>
-      </div>
-
+    <div class="slide" data-caption="Cả lớp bên nhau">
+      <img src="JPG/atc1.13.JPG">
     </div>
 
-                     <!-- summary 2 -->
-    <div class="memory-summary">
-      Ngày 
-    </div>    
+    <div class="slide" data-caption="Khoảnh khắc cô mỉm cười">
+      <img src="JPG/atc1.14.JPG">
+    </div>
 
-    <div class="memory-gallery">
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
 
-      <div class="memory-item">
-        <img src="JPG/atc1.JPG">
-        <p>Hé hé.</p>
-      </div>  
-    </div>            
+    <p class="slider-caption"></p>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Lần tri ân cuối bên cô</div>
+
+    <div class="summary-desc">
+      Đoạn mô tả này KHÔNG thay đổi theo ảnh.
+    </div>
+  </div>
+
             
  </div>
 
@@ -184,45 +190,39 @@
                      <!-- summary 1  -->
    <div id="stop12" class="memory-stop">
     <div class="memory-year">LỚP 12 </div>
-    <div class="memory-summary">
-      Lần 
+    <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery" id="galA">
+
+    <div class="slide active" data-caption="Hội chị đẹp 12L">
+      <img src="JPG/atc1.12.JPG">
     </div>
 
-    <div class="memory-gallery">
-
-      <div class="memory-item">
-        <img src="JPG/atc.JPG">
-        <p>Hội </p>
-      </div>
-
-      <div class="memory-item">
-        <img src="JPG/atc1.JPG">
-        <p>Cả . </p>
-      </div>
-
-    </div>
-                     <!-- summary 2  -->
-    <div class="memory-summary">
-      Kỉ
+    <div class="slide" data-caption="Cả lớp bên nhau">
+      <img src="JPG/atc1.13.JPG">
     </div>
 
-    <div class="memory-gallery">
+    <div class="slide" data-caption="Khoảnh khắc cô mỉm cười">
+      <img src="JPG/atc1.14.JPG">
+    </div>
 
-      <div class="memory-item">
-        <img src="JPG/atc.JPG">
-        <p>Mặc</p>
-      </div>
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
 
-      <div class="memory-item">
-        <img src="JPG/atc.JPG">
-        <p>... nhưng chúng ta vẫn có những khoảnh khắc thanh xuân...</p>
-      </div>
+    <p class="slider-caption"></p>
 
-      <div class="memory-item">
-        <img src="JPG/atc1.19.JPG">
-        <p>... cực kì đáng nhớ bên nhau. </p>
-      </div>
   </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">Lần tri ân cuối bên cô</div>
+
+    <div class="summary-desc">
+      Đoạn mô tả này KHÔNG thay đổi theo ảnh.
+    </div>
+  </div>
+
 
 </section>
 
@@ -331,6 +331,7 @@ Hai năm không phải là quãng thời gian quá dài, nhưng đủ để tạ
 
   </div>
 </footer>
+
 <script>
 document.addEventListener("DOMContentLoaded", ()=>{
 
@@ -345,8 +346,7 @@ const percentBox = document.getElementById("timelinePercent");
 const milestones = document.querySelectorAll(".timeline-milestone");
 const stops = document.querySelectorAll(".memory-stop");
 
-const milestonePercents = [10,40,67];
-
+const milestonePercents = [1,29,74];
 
 let activeIndex = -1;
 let bubbleTimer = null;
@@ -528,16 +528,25 @@ function update(){
     `translate(${posX}px,${posY}px) scale(${scale})`;
 }
 
-document.querySelectorAll(".memory-item img").forEach(img=>{
-  img.onclick = e=>{
+/* click mở ảnh — áp dụng cho memory + slider */
+
+document.querySelectorAll(".memory-item img, .slider-gallery img")
+.forEach(img=>{
+  img.addEventListener("click", e=>{
     e.stopPropagation();
+
     lb.style.display = "flex";
     lbImg.src = img.src;
-    scale = 1; posX = 0; posY = 0;
+
+    scale = 1;
+    posX = 0;
+    posY = 0;
     update();
+
     document.body.style.overflow = "hidden";
-  };
+  });
 });
+
 
 /* scroll zoom */
 
@@ -667,24 +676,96 @@ document.getElementById("feedbackForm2").onsubmit = function(e){
 };
 </script>
 
+<script>
+/* ===== SLIDER + CAPTION + ARROW + AUTO 3s ===== */
 
+document.querySelectorAll(".slider-gallery").forEach(gallery=>{
+
+  const slides = gallery.querySelectorAll(".slide");
+  const caption = gallery.querySelector(".slider-caption");
+  const prev = gallery.querySelector(".prev");
+  const next = gallery.querySelector(".next");
+
+  if(!slides.length) return;
+
+  let i = 0;
+  let timer;
+
+  function show(n){
+    slides.forEach(s=>s.classList.remove("active"));
+    i = (n + slides.length) % slides.length;
+    slides[i].classList.add("active");
+
+    if(caption){
+      caption.textContent = slides[i].dataset.caption || "";
+    }
+  }
+
+  function start(){
+    timer = setInterval(()=> show(i+1), 3000);
+  }
+
+  function reset(){
+    clearInterval(timer);
+    start();
+  }
+
+  if(next){
+    next.onclick = ()=>{ show(i+1); reset(); };
+  }
+
+  if(prev){
+    prev.onclick = ()=>{ show(i-1); reset(); };
+  }
+
+  show(0);
+  start();
+});
+</script>
 
 <script>
-const d = new Date(document.lastModified);
+/* ================= PROFILE AUTO SLIDER ================= */
 
-document.getElementById("lastUpdate").textContent =
-  d.toLocaleDateString("vi-VN") + " " +
-  d.toLocaleTimeString("vi-VN");
+document.addEventListener("DOMContentLoaded", ()=>{
+
+  const profileImg = document.getElementById("profileSlider");
+  if(!profileImg) return; // không có thì bỏ qua — tránh lỗi
+
+  const profileImages = [
+    "JPG/anhthayCuong.JPG",
+    "JPG/anhthayCuong1.JPG"
+
+  ];
+
+  let i = 0;
+
+  // hiệu ứng mờ nhẹ khi đổi
+  profileImg.style.transition = "opacity .4s";
+
+  setInterval(()=>{
+    profileImg.style.opacity = 0;
+
+    setTimeout(()=>{
+      i = (i + 1) % profileImages.length;
+      profileImg.src = profileImages[i];
+      profileImg.style.opacity = 1;
+    }, 250);
+
+  }, 3000);
+
+});
 </script>
 
 
+
+
 <div id="celebrateLayer"></div>
+
 <div id="imgLightbox" class="img-lightbox">
   <span class="lb-close">✖</span>
   <img id="lbImg">
 </div>
+
+
 </body>
 </html>
-
-
-
