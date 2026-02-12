@@ -36,7 +36,7 @@
 
     <div class="ticket-body">
       Bạn đã sẵn sàng bước lên chuyến xe thanh xuân chưa?<br>
-      Chuyến đi này chứa đầy kỷ niệm, tiếng cười và những khoảnh khắc không thể quay lại.
+      Chuyến đi này chứa đầy kỷ niệm, tiếng cười và những khoảnh khắc không thể nào quên.
     </div>
 
     <div class="ticket-stamp">VALID</div>
@@ -142,7 +142,7 @@
       <img src="JPG/atc1.1.JPG">
     </div>
 
-    <div class="slide" data-caption="Bánh kem cô mua">
+    <div class="slide" data-caption="Bánh kem của lớp 10L ">
       <img src="JPG/atc1.2.JPG">
     </div>
 
@@ -168,7 +168,7 @@
   <!-- LEFT -->
   <div class="slider-gallery" id="galA">
 
-    <div class="slide active" data-caption="Hội chị đẹp 12L">
+    <div class="slide active" data-caption="8/3 của lớp và cô">
       <img src="JPG/atc1.3.JPG">
     </div>
 
@@ -207,11 +207,11 @@
   <!-- LEFT -->
   <div class="slider-gallery" id="galA">
 
-    <div class="slide active" data-caption="Lớp 12L">
+    <div class="slide active" data-caption="Lớp 11L">
       <img src="JPG/atc1.4.JPG">
     </div>
 
-    <div class="slide" data-caption="anh em 12L">
+    <div class="slide" data-caption="anh em 11L">
       <img src="JPG/atc1.5.JPG">
     </div>
 
@@ -262,7 +262,7 @@
  <div class="summary-slider">
 
   <!-- LEFT -->
-  <div class="slider-gallery" id="galA">
+  <div class="slider-gallery">
 
     <div class="slide active" data-caption="Trước khi trốn">
       <img src="JPG/atc1.7.JPG">
@@ -290,7 +290,7 @@
  <div class="summary-slider">
 
   <!-- LEFT -->
-  <div class="slider-gallery" id="galA">
+  <div class="slider-gallery" >
 
     <div class="slide active" data-caption="Chín cả 2 mặt">
       <img src="JPG/atc1.8.JPG">
@@ -322,7 +322,7 @@
   <div class="summary-slider">
 
   <!-- LEFT -->
-  <div class="slider-gallery" id="galA">
+  <div class="slider-gallery">
 
     <div class="slide active" data-caption="Lớp ngày 8/3">
       <img src="JPG/atc1.10.JPG">
@@ -366,7 +366,7 @@
  <div class="summary-slider">
 
   <!-- LEFT -->
-  <div class="slider-gallery" id="galA">
+  <div class="slider-gallery">
 
     <div class="slide active" data-caption="Hội chị đẹp 12L">
       <img src="JPG/atc1.12.JPG">
@@ -408,7 +408,7 @@
    <div class="summary-slider">
 
   <!-- LEFT -->
-  <div class="slider-gallery" id="galA">
+  <div class="slider-gallery">
 
     <div class="slide active" data-caption="12L và cầu ở Đà Lạt">
       <img src="JPG/atc1.17.JPG">
@@ -438,10 +438,55 @@
     </div>
   </div>
 
+</div>
+ <div class="summary-slider">
+
+  <!-- LEFT -->
+  <div class="slider-gallery">
+
+    <div class="slide active" data-caption="Một nồi lẩu, cả trời kỷ niệm.">
+      <img src="JPG/atc1.20.JPG">
+    </div>
+
+    <div class="slide" data-caption="Quây quần là đủ ấm.">
+      <img src="JPG/atc1.21.JPG">
+    </div>
+
+    <button class="slide-btn prev">‹</button>
+    <button class="slide-btn next">›</button>
+
+    <p class="slider-caption"></p>
+
+  </div>
+
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">YEAR ENDING PARTY 2026</div>
+
+    <div class="summary-desc">
+     Đây là tiệc tất niên thứ hai ở nhà cô cũng như là tiệc tất niên cuối cùng của tập thể Lý-K28 ở năm cấp ba. Hôm ấy đã đầy đủ các bạn hơn năm ngoái, mọi người đều rất vui và trân trọng những khoảnh khắc đáng quý cuối cùng này. Mặc dù bữa tiệc có gặp chút vấn đề kéo dài thời gian nhưng đó cũng là cơ hội để mọi người cùng nhau vui chơi chia sẻ nhiều niềm vui bên cô
+
+    </div>
+  </div>
+
+</div>
+ <div class="summary-slider">
+  <div class="slider-gallery">
+ <div class="video-thumb">
+  <video id="myVideo" src="MP4/vyp2026.MP4"></video>
+  <div class="play-icon">▶</div>
+</div>
+
+</div>
+  <!-- RIGHT -->
+  <div class="summary-text">
+    <div class="summary-title">VIDEO YEAR ENDING PARTY 2026</div>
+
+    <div class="summary-desc">
+  Tiệc tất niên cuối cùng của Lý-K28 tại nhà cô diễn ra trong không khí ấm áp và đông đủ. Dù có chút kéo dài, đó lại là dịp để cả lớp cùng cô lưu giữ thêm những khoảnh khắc đáng nhớ.
 
 
-
-
+    </div>
 
   </div>
 
@@ -837,12 +882,7 @@ window.addEventListener("orientationchange", checkOrientation);
 
 });
 
-document.getElementById("backTopBtn").onclick = ()=>{
-  window.scrollTo({
-    top:0,
-    behavior:"smooth"
-  });
-};
+
 
 </script>
 
@@ -966,6 +1006,46 @@ document.getElementById("fbForm").onsubmit = async e => {
 };
 </script>
 
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+  const thumb = document.querySelector(".video-thumb");
+  const videoLB = document.getElementById("videoLightbox");
+  const videoPlayer = document.getElementById("videoPlayer");
+  const closeBtn = document.querySelector(".video-close");
+
+  if(!thumb || !videoLB || !videoPlayer) return;
+
+  thumb.addEventListener("click", function(){
+    const vid = thumb.querySelector("video");
+    if(!vid) return;
+
+    videoPlayer.src = vid.src;
+    videoLB.style.display = "flex";
+    document.documentElement.style.overflow = "hidden";
+    videoPlayer.play();
+  });
+
+  function closeVideo(){
+    videoLB.style.display = "none";
+    videoPlayer.pause();
+    videoPlayer.src = "";
+    document.documentElement.style.overflow = "";
+  }
+
+  closeBtn.addEventListener("click", closeVideo);
+
+  videoLB.addEventListener("click", function(e){
+    if(e.target === videoLB){
+      closeVideo();
+    }
+  });
+
+});
+</script>
+
+
 <script>
 const d = new Date(document.lastModified);
 
@@ -981,6 +1061,10 @@ document.getElementById("lastUpdate").textContent =
   <img id="lbImg">
 </div>
 
+<div id="videoLightbox" class="video-lightbox">
+  <span class="video-close">✖</span>
+  <video id="videoPlayer" controls></video>
+</div>
 
 </body>
 </html>
