@@ -180,7 +180,7 @@ body{
   content:"";
   position:absolute;
   inset:0;
-  background:rgba(0,0,0,.4);   /* tối hơn */
+  background:rgba(0,0,0,.5);   /* tối hơn */
   z-index:0;
 }
 
