@@ -256,8 +256,9 @@ function updateTribute(card){
   if (isNaN(idx)) return;
 
   tributeText.classList.add("hide");
+
   setTimeout(() => {
-    tributeText.textContent = tributeContents[idx] || "";
+    tributeText.innerHTML = `<strong>${tributeContents[idx] || ""}</strong>`;
     tributeText.classList.remove("hide");
   }, 300);
 }

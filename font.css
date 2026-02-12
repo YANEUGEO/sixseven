@@ -176,6 +176,13 @@ body{
   overflow:visible;
 }
 
+.carousel::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:rgba(0,0,0,.4);   /* tối hơn */
+  z-index:0;
+}
 
 
 .carousel > *{
@@ -187,23 +194,33 @@ body{
 /* ======================
    TRACK
 ====================== */
+.carousel{
+  padding-left:0;
+  padding-right:0;
+}
+
 
 .carousel-viewport{
   overflow:hidden;
+  display:flex;
+  justify-content:center;
 }
 
 .carousel-track{
   display:flex;
   gap:40px;
   align-items:center;
-  will-change:transform;
+
+  justify-content:center;   /* CĂN GIỮA THẬT */
+  min-width:100%;
 }
 
-
 /* ======================
-   CARD — FIX SCALE KHÔNG MẤT BO GÓC
+   CARD — CENTER FIX + SCALE MƯỢT
 ====================== */
 
+
+/* card */
 .card{
   width:240px;
   height:360px;
@@ -211,17 +228,17 @@ body{
   flex-shrink:0;
 
   border-radius:22px;
-  overflow:hidden;        /* giữ bo góc */
+  overflow:hidden;
 
   opacity:.55;
-  transition:.45s;
+  transition:transform .45s ease, opacity .45s ease;
   text-decoration:none;
   color:white;
 
   z-index:1;
 }
 
-/* lớp scale bên trong */
+/* lớp bên trong để scale không mất bo góc */
 .card-inner{
   width:100%;
   height:100%;
@@ -230,20 +247,19 @@ body{
   position:relative;
 
   transform:scale(.86);
-  transition:.45s;
+  transition:transform .45s ease, box-shadow .45s ease;
 }
 
-/* card center */
+/* card ở giữa */
 .card.active{
   opacity:1;
   z-index:5;
 }
 
 .card.active .card-inner{
-  transform:scale(1.10);   /* phóng to nhưng không tràn */
+  transform:scale(1.08);   /* scale vừa phải để không trôi thị giác */
   box-shadow:0 25px 60px rgba(0,0,0,.45);
 }
-
 
 /* ảnh */
 .card-inner img{
@@ -253,7 +269,7 @@ body{
   display:block;
 }
 
-
+/* overlay gradient */
 .card-inner::after{
   content:"";
   position:absolute;
@@ -269,7 +285,6 @@ body{
   );
 }
 
-
 /* tên */
 .card h3{
   position:absolute;
@@ -278,6 +293,11 @@ body{
   text-align:center;
   z-index:2;
   font-weight:600;
+}
+
+/* xoá margin mặc định tránh lệch */
+body{
+  margin:0;
 }
 
 
