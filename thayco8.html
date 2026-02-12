@@ -663,6 +663,44 @@ document.querySelectorAll(".slider-gallery").forEach(gallery=>{
 });
 </script>
 
+<script>
+document.getElementById("fbForm").onsubmit = async e => {
+  e.preventDefault();
+
+  const name = fbName.value.trim() || "Ẩn danh";
+  const content = fbContent.value.trim();
+
+  if(!content){
+    alert("Vui lòng nhập nội dung góp ý");
+    return;
+  }
+
+  if(!fbPublic.checked){
+    alert("Bạn cần tick đồng ý công khai");
+    return;
+  }
+
+  const data = new FormData();
+  data.append("entry.1433610252", name);
+  data.append("entry.2100382941", content);
+
+  await fetch(
+    "https://docs.google.com/forms/d/e/1FAIpQLSdVFGaL6P8f7fmEVyg1MEHy1TJnWf_1XGisrnWCfvRxM02TQQ/formResponse",
+    { method:"POST", mode:"no-cors", body:data }
+  );
+
+  // 👉 chuyển sang trang danh sách góp ý
+  location.href = "nhangopy.html";
+};
+</script>
+
+<script>
+const d = new Date(document.lastModified);
+
+document.getElementById("lastUpdate").textContent =
+  d.toLocaleDateString("vi-VN") + " " +
+  d.toLocaleTimeString("vi-VN");
+</script>
 
 
 
